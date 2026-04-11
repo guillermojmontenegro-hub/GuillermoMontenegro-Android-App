@@ -24,3 +24,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "CVGuillermoMontenegro"
 include(":app")
+include(":cv")
+include(":blog")
