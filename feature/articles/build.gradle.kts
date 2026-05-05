@@ -34,6 +34,8 @@ dependencies {
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.material3)
     implementation(libs.androidx.ui)
+    implementation(libs.androidx.foundation)
+    implementation(libs.androidx.foundation.layout)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.hilt.android)
     implementation(libs.androidx.hilt.navigation.compose)
