@@ -1,25 +1,87 @@
 <resources>
     <string name="app_name">CVGuillermoMontenegro</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="nav_title_onboarding">Onboarding</string>
+    <string name="nav_title_library">Biblioteca</string>
+    <string name="nav_title_article">Artículo</string>
+    <string name="nav_title_user">Usuario</string>
+    <string name="nav_title_admin">Administración</string>
+    <string name="nav_title_home">CV Guillermo Montenegro</string>
+    <string name="nav_no_active_user">ABM sin usuario activo</string>
+    <string name="fab_view_articles">Ver artículos</string>
+    <string name="drawer_default_avatar">CV</string>
+    <string name="drawer_no_active_user">Sin usuario activo</string>
+    <string name="drawer_no_active_user_description">Creá un usuario para administrar el ABM</string>
+    <string name="drawer_home">Inicio</string>
+    <string name="drawer_users_list">Listado de usuarios</string>
+    <string name="drawer_user_create">Alta de usuario</string>
+    <string name="drawer_user_edit_active">Editar usuario activo</string>
+    <string name="drawer_close">Cerrar panel</string>
 
-    <string name="menu_transform">Transform</string>
-    <string name="menu_reflow">Reflow</string>
-    <string name="menu_slideshow">Slideshow</string>
-    <string name="menu_settings">Settings</string>
+    <string name="home_explore_articles">Explorar artículos</string>
+    <string name="home_specialties">Especialidades</string>
+    <string name="home_experience">Experiencia</string>
+    <string name="home_projects">Proyectos</string>
+    <string name="home_languages">Idiomas</string>
+    <string name="home_education">Educación</string>
+    <string name="home_contact">Contacto</string>
+    <string name="contact_location">Ubicación</string>
+    <string name="contact_email">Email</string>
+    <string name="contact_linkedin">LinkedIn</string>
+    <string name="contact_github">GitHub</string>
+    <string name="item_bullet">%1$s%2$s</string>
+    <string name="item_company_period">%1$s · %2$s</string>
+    <string name="item_date_author">%1$s · %2$s</string>
 
-    <string name="lorem_ipsum_title">Lorem Ipsum"</string>
-    <string name="lorem_ipsum">Lorem Ipsum is simply placeholder text of the printing and
-        typesetting industry. Lorem Ipsum has been the industry\'s standard placeholder text ever
-        since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
-        type specimen book"
-    </string>
-    <string name="fab_content_description">Represents a view to invoke an action</string>
-    <string name="image_view_item_transform_content_description">Represents an image view in the
-        item
-    </string>
+    <string name="articles_library_title">Biblioteca técnica</string>
+    <string name="articles_search_label">Buscar por título o contenido</string>
+    <string name="articles_unknown_error">Error desconocido</string>
+    <string name="articles_empty_filters">No hay artículos para los filtros actuales.</string>
+    <string name="article_load_error">No se pudo cargar el artículo</string>
+
+    <string name="users_admin_title">Administración de usuarios</string>
+    <string name="users_admin_description">El drawer concentra el acceso al ABM. Desde esta vista podés revisar, editar y borrar registros persistidos.</string>
+    <string name="users_empty_title">Sin registros</string>
+    <string name="users_empty_message">Todavía no hay usuarios cargados.</string>
+    <string name="users_create_first">Crear primer usuario</string>
+    <string name="users_edit_content_description">Editar</string>
+    <string name="users_delete_content_description">Borrar</string>
+    <string name="users_delete_confirm">Eliminar</string>
+    <string name="users_delete_cancel">Cancelar</string>
+    <string name="users_delete_title">Confirmar baja</string>
+    <string name="users_delete_message">Esta acción elimina el usuario persistido en Room.</string>
+
+    <string name="user_form_edit_title">Editar usuario</string>
+    <string name="user_form_new_title">Nuevo usuario</string>
+    <string name="user_form_name">Nombre</string>
+    <string name="user_form_email">Email</string>
+    <string name="user_form_role">Rol</string>
+    <string name="user_form_phone">Teléfono</string>
+    <string name="user_form_phone_hint">+54-9-11-5263-5695</string>
+    <string name="user_form_save_changes">Guardar cambios</string>
+    <string name="user_form_create">Crear usuario</string>
+    <string name="user_error_name_required">Ingresá un nombre</string>
+    <string name="user_error_invalid_email">Ingresá un email válido</string>
+
+    <string name="onboarding_title">Cómo usar la app</string>
+    <string name="onboarding_step_counter">Paso %1$d de %2$d</string>
+    <string name="onboarding_technology">Tecnología: %1$s</string>
+    <string name="onboarding_back">Atrás</string>
+    <string name="onboarding_next">Siguiente</string>
+    <string name="onboarding_enter">Entrar</string>
+    <string name="onboarding_step_1_title">Perfil y navegación</string>
+    <string name="onboarding_step_1_technology">Jetpack Compose</string>
+    <string name="onboarding_step_1_description">Esta pantalla muestra navegación, layout declarativo y una estética moderna construidos con Jetpack Compose. El drawer y la home sirven para exhibir cómo se arma una UI nativa flexible con Compose.</string>
+    <string name="onboarding_step_1_hint">Abrí el drawer desde el icono superior izquierdo para ver cómo Compose resuelve navegación, jerarquía visual y superficies interactivas.</string>
+    <string name="onboarding_step_2_title">Ver artículos</string>
+    <string name="onboarding_step_2_technology">Retrofit</string>
+    <string name="onboarding_step_2_description">La biblioteca técnica está pensada para mostrar consumo de servicios con Retrofit. Aunque hoy el backend está mockeado dentro de la app, el flujo usa cliente HTTP real, repositorio y parseo de datos como si hablara con una API externa.</string>
+    <string name="onboarding_step_2_hint">Desde la home, tocá el FAB “Ver artículos” para disparar la carga remota y navegar el contenido recibido por Retrofit.</string>
+    <string name="onboarding_step_3_title">ABM de usuarios</string>
+    <string name="onboarding_step_3_technology">Room</string>
+    <string name="onboarding_step_3_description">El ABM de usuarios existe para mostrar persistencia local con Room. Alta, edición, listado y baja quedan almacenados en base de datos dentro del dispositivo y vuelven a aparecer al reabrir la app.</string>
+    <string name="onboarding_step_3_hint">Usá “Alta de usuario”, “Listado de usuarios” y “Editar usuario activo” para recorrer el circuito completo persistido con Room.</string>
+    <string name="onboarding_demo_open_drawer">Abrí el drawer</string>
+    <string name="onboarding_demo_view_articles">Ver artículos</string>
+    <string name="onboarding_demo_user_create">Alta de usuario</string>
+    <string name="onboarding_demo_user_list_edit">Listado y edición</string>
 </resources>
