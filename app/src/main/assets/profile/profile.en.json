@@ -1,0 +1,111 @@
+{
+  "name": "Guillermo J. Montenegro",
+  "headline": "Mobile, Web Full Stack, and AI Engineer with more than 15 years of experience",
+  "summary": "Senior developer oriented to Mobile, Web Full Stack, and AI Engineer roles. I bring experience across Android and iOS mobile development, web development with React and Next.js, Python backend work, and integration of AI-based solutions. I adopted AI tools early as coding assistants and workflow accelerators, and that practice evolved into hands-on work with LLMs, agents, tool calling, prompting, and applied automation.",
+  "skills": [
+    "LLMs",
+    "Agents",
+    "Tool Calling",
+    "Prompt Engineering",
+    "Context Engineering",
+    "MCP Servers",
+    "LangChain",
+    "Langflow",
+    "n8n",
+    "Ollama",
+    "LM Studio",
+    "PyTorch",
+    "Android",
+    "Kotlin",
+    "Java",
+    "Jetpack Compose",
+    "iOS",
+    "Swift",
+    "Objective-C",
+    "React",
+    "Next.js",
+    "TypeScript",
+    "JavaScript",
+    "Python",
+    "Tailwind CSS",
+    "Docker",
+    "CI/CD",
+    "Azure",
+    "GCP"
+  ],
+  "experience": [
+    {
+      "company": "Grid Dynamics",
+      "role": "Full Stack Developer (T3) / AI Engineer",
+      "period": "Mar 2025 - Mar 2026",
+      "highlights": [
+        "Contributed to the design and development of a business-oriented web application, from functional definition through delivery.",
+        "Worked as an AI Engineer, AI Researcher, and Senior Software Engineer in applied research involving LLMs, agents, and tool ecosystems.",
+        "Designed AI-assisted workflows and prototypes focused on model integration, orchestration, and deterministic behavior.",
+        "Implemented automation, internal tools, and engineering practices to strengthen development and operations cycles."
+      ]
+    },
+    {
+      "company": "Mobile Computing S.A.",
+      "role": "Senior Full Stack Developer / AI Engineer",
+      "period": "Jun 2013 - Mar 2025",
+      "highlights": [
+        "More than a decade of continuous work in mobile development across Android, iOS, and cross-platform technologies.",
+        "Designed and built mobile and web applications for corporate and research environments.",
+        "Integrated mobile apps, APIs, supporting backends, and related web frontends.",
+        "Performed AI Engineer work in the exploration, evaluation, and incorporation of AI tools for productivity, automation, and new development workflows.",
+        "Built scalable, maintainable solutions oriented toward real product operation."
+      ]
+    },
+    {
+      "company": "@rtech S.R.L.",
+      "role": "Senior Developer",
+      "period": "May 2010 - Jun 2013",
+      "highlights": [
+        "Development of enterprise and mobile applications in C#, VB .NET, ASP .NET, Objective-C, Java, and JavaScript.",
+        "Worked on mobile games and apps such as Rescue me from Asylum, AfterLife Samurai, and DimBot Unit 12.",
+        "Used Xcode, Eclipse, Blender, Gimp, Unity Engine, and Zebra scripting."
+      ]
+    },
+    {
+      "company": "Bosch Argentina Industrial",
+      "role": "Senior Auditor",
+      "period": "Jun 2001 - Dec 2009",
+      "highlights": [
+        "Internal auditor and senior quality control professional.",
+        "Leadership of a junior auditors team.",
+        "Implementation and control of ISO standards in production processes."
+      ]
+    }
+  ],
+  "projects": [
+    "AIDZero: modular runtime for LLM agents in Python with tools and MCP gateway",
+    "Personal CV website and technical library built with Next.js, React, and TypeScript",
+    "Native Android applications with Kotlin, Jetpack Compose, and maintainable architecture",
+    "iOS applications with Swift, UIKit, and SwiftUI",
+    "Web frontends with React, Next.js, and TypeScript",
+    "Python backends and automation for AI and mobile/web products"
+  ],
+  "education": [
+    {
+      "title": "Electrical Technician with a specialization in Industrial Electronics",
+      "period": "1993 - 1999",
+      "institution": "E.E.T. No. 4 Ing. Emilio Mitre"
+    },
+    {
+      "title": "Systems Engineering (incomplete)",
+      "period": "1999 - 2002",
+      "institution": "National Technological University"
+    }
+  ],
+  "languages": [
+    { "name": "Spanish", "level": "Native or bilingual" },
+    { "name": "English", "level": "C1" }
+  ],
+  "contact": {
+    "email": "guillermo.j.montenegro@gmail.com",
+    "location": "Buenos Aires, Argentina",
+    "linkedin": "https://www.linkedin.com/in/guillermo-j-montenegro-7b9a7a35",
+    "github": "https://github.com/guillermojmontenegro-hub"
+  }
+}

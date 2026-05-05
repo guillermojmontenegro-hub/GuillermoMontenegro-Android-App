@@ -1,0 +1,24 @@
+<resources>
+    <string name="users_admin_title">Administración de usuarios</string>
+    <string name="users_admin_description">El drawer concentra el acceso al ABM. Desde esta vista podés revisar, editar y borrar registros persistidos.</string>
+    <string name="users_empty_title">Sin registros</string>
+    <string name="users_empty_message">Todavía no hay usuarios cargados.</string>
+    <string name="users_create_first">Crear primer usuario</string>
+    <string name="users_edit_content_description">Editar</string>
+    <string name="users_delete_content_description">Borrar</string>
+    <string name="users_delete_confirm">Eliminar</string>
+    <string name="users_delete_cancel">Cancelar</string>
+    <string name="users_delete_title">Confirmar baja</string>
+    <string name="users_delete_message">Esta acción elimina el usuario persistido en Room.</string>
+    <string name="user_form_edit_title">Editar usuario</string>
+    <string name="user_form_new_title">Nuevo usuario</string>
+    <string name="user_form_name">Nombre</string>
+    <string name="user_form_email">Email</string>
+    <string name="user_form_role">Rol</string>
+    <string name="user_form_phone">Teléfono</string>
+    <string name="user_form_phone_hint">+54-9-11-5263-5695</string>
+    <string name="user_form_save_changes">Guardar cambios</string>
+    <string name="user_form_create">Crear usuario</string>
+    <string name="user_error_name_required">Ingresá un nombre</string>
+    <string name="user_error_invalid_email">Ingresá un email válido</string>
+</resources>

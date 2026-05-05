@@ -24,5 +24,10 @@ dependencyResolutionManagement {
 
 rootProject.name = "CVGuillermoMontenegro"
 include(":app")
-include(":cv")
-include(":blog")
+include(":core:model")
+include(":core:data")
+include(":core:ui")
+include(":feature:profile")
+include(":feature:articles")
+include(":feature:users")
+include(":feature:onboarding")
