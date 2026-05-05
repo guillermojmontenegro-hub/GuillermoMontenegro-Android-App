@@ -1,0 +1,24 @@
+<resources>
+    <string name="onboarding_title">Cómo usar la app</string>
+    <string name="onboarding_step_counter">Paso %1$d de %2$d</string>
+    <string name="onboarding_technology">Tecnología: %1$s</string>
+    <string name="onboarding_back">Atrás</string>
+    <string name="onboarding_next">Siguiente</string>
+    <string name="onboarding_enter">Entrar</string>
+    <string name="onboarding_step_1_title">Perfil y navegación</string>
+    <string name="onboarding_step_1_technology">Jetpack Compose</string>
+    <string name="onboarding_step_1_description">Esta pantalla muestra navegación, layout declarativo y una estética moderna construidos con Jetpack Compose. El drawer y la home sirven para exhibir cómo se arma una UI nativa flexible con Compose.</string>
+    <string name="onboarding_step_1_hint">Abrí el drawer desde el icono superior izquierdo para ver cómo Compose resuelve navegación, jerarquía visual y superficies interactivas.</string>
+    <string name="onboarding_step_2_title">Ver artículos</string>
+    <string name="onboarding_step_2_technology">Retrofit</string>
+    <string name="onboarding_step_2_description">La biblioteca técnica está pensada para mostrar consumo de servicios con Retrofit. Aunque hoy el backend está mockeado dentro de la app, el flujo usa cliente HTTP real, repositorio y parseo de datos como si hablara con una API externa.</string>
+    <string name="onboarding_step_2_hint">Desde la home, tocá el FAB “Ver artículos” para disparar la carga remota y navegar el contenido recibido por Retrofit.</string>
+    <string name="onboarding_step_3_title">ABM de usuarios</string>
+    <string name="onboarding_step_3_technology">Room</string>
+    <string name="onboarding_step_3_description">El ABM de usuarios existe para mostrar persistencia local con Room. Alta, edición, listado y baja quedan almacenados en base de datos dentro del dispositivo y vuelven a aparecer al reabrir la app.</string>
+    <string name="onboarding_step_3_hint">Usá “Alta de usuario”, “Listado de usuarios” y “Editar usuario activo” para recorrer el circuito completo persistido con Room.</string>
+    <string name="onboarding_demo_open_drawer">Abrí el drawer</string>
+    <string name="onboarding_demo_view_articles">Ver artículos</string>
+    <string name="onboarding_demo_user_create">Alta de usuario</string>
+    <string name="onboarding_demo_user_list_edit">Listado y edición</string>
+</resources>

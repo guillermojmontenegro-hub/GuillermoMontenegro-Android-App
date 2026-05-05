@@ -1,0 +1,8 @@
+<resources>
+    <string name="articles_library_title">Biblioteca técnica</string>
+    <string name="articles_search_label">Buscar por título o contenido</string>
+    <string name="articles_unknown_error">Error desconocido</string>
+    <string name="articles_empty_filters">No hay artículos para los filtros actuales.</string>
+    <string name="article_load_error">No se pudo cargar el artículo</string>
+    <string name="item_date_author">%1$s · %2$s</string>
+</resources>

@@ -15,6 +15,7 @@ En concreto, esta app me sirve para mostrar:
 
 - cómo construyo interfaces con Jetpack Compose
 - cómo organizo una app por capas sin sobrediseñarla
+- cómo modularizo lógica de acceso mediante casos de uso
 - cómo manejo estado de pantalla con `ViewModel` y `Flow`
 - cómo conecto una capa remota con `Retrofit` y `OkHttp`
 - cómo persisto datos locales con `Room`
@@ -74,6 +75,18 @@ La app usa `ViewModel` para conservar estado de pantalla y separar lógica de UI
 
 Mi intención acá fue mantener una solución idiomática de Android moderno sin sobreingeniería.
 
+### Casos de uso
+
+Agregué casos de uso dentro de cada feature module para modularizar operaciones concretas y evitar que los `ViewModel` dependan directo de los repositorios. Hoy, por ejemplo, la carga de perfil vive en `feature:profile`, la carga de artículos vive en `feature:articles` y las operaciones del ABM viven en `feature:users`.
+
+Esto me interesa por dos motivos:
+
+- hace más explícita la intención de cada operación
+- deja un punto intermedio claro entre UI y datos para crecer reglas de negocio sin ensuciar los `ViewModel`
+- mantiene cada feature desacoplada de las demás, compartiendo solo contratos y servicios de `core`
+
+En este proyecto lo usé de forma pragmática: no como ceremonia, sino como una capa liviana dentro de cada módulo funcional para encapsular comportamientos concretos.
+
 ### Room
 
 El ABM de usuarios está implementado con `Room`. Lo usé para mostrar persistencia local real, no solo estado en memoria. Esto permite:
@@ -106,7 +119,7 @@ Uso `kotlinx.serialization` para leer contenido local desde assets, especialment
 
 - proveer base de datos y DAOs
 - proveer cliente HTTP, Retrofit y API
-- inyectar repositorios en ViewModels
+- inyectar repositorios y casos de uso
 - mantener el wiring centralizado en módulos de DI
 
 Me interesa mostrar que una app chica también puede beneficiarse de DI si se usa con criterio y sin convertir cada archivo en una fábrica manual.
@@ -127,14 +140,36 @@ En este proyecto además dejé explícito el manejo de su dependencia para que s
 
 ## Arquitectura
 
-La estructura general del proyecto es esta:
+La app quedó organizada como un proyecto multimódulo. `app` funciona como shell de composición, navegación e integración final; las features viven en módulos Gradle separados; y lo compartido se concentra en módulos `core`.
 
-- `ui`: pantallas, navegación, componentes reutilizables, theme y ViewModels de presentación
-- `domain`: modelos de negocio que usa la app
-- `data`: fuentes locales, fuentes remotas, repositorios y mappers
-- `di`: módulos de inyección de dependencias
+La estructura principal es:
 
-No quise convertir esto en una arquitectura ceremonial. Busqué una organización que fuera fácil de leer, suficientemente escalable y coherente con el tamaño actual del proyecto.
+- `app`: punto de entrada, `Application`, `MainActivity`, theme y navegación raíz
+- `core:model`: modelos de dominio compartidos, como `User`, `Article` y `Profile`
+- `core:data`: Room, Retrofit, repositorios, DTOs, DAOs, mappers y módulos Hilt de infraestructura
+- `core:ui`: componentes Compose reutilizables y utilidades compartidas de UI
+- `feature:profile`: home del CV, perfil profesional y caso de uso de carga de perfil
+- `feature:articles`: listado, búsqueda, detalle Markdown y casos de uso de artículos
+- `feature:users`: ABM de usuarios, formulario, ViewModel y casos de uso sobre Room
+- `feature:onboarding`: experiencia inicial de uso y explicación técnica de la app
+
+La regla de dependencia que sigo es simple:
+
+- `app` conoce a las features para componer navegación
+- las features dependen de `core`
+- `core` no depende de ninguna feature
+- una feature no depende de otra feature
+
+Dentro de cada feature, los casos de uso modularizan operaciones como:
+
+- obtención del perfil
+- carga de artículos
+- carga de detalle por slug
+- listado de usuarios
+- obtención de usuario por id
+- guardado y borrado de usuarios
+
+No quise convertir esto en una arquitectura ceremonial. Busqué una organización que fuera fácil de leer, suficientemente escalable y coherente con el tamaño actual del proyecto, pero con límites reales entre módulos para que cada feature pueda evolucionar de forma independiente.
 
 ## Origen de datos
 
@@ -149,6 +184,7 @@ Los artículos se obtienen mediante una interfaz remota con `Retrofit`, pero res
 
 Hay algunas decisiones de implementación que fueron deliberadas:
 
+- separar la app en feature modules desacoplados
 - separar usuarios persistidos en `Room` de los artículos remotos
 - usar assets versionados para el perfil y los mocks
 - mantener el código bastante explícito en vez de esconder demasiada lógica detrás de abstracciones prematuras
