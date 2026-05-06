@@ -16,6 +16,7 @@ import androidx.compose.material.icons.automirrored.filled.MenuBook
 import androidx.compose.material.icons.filled.Group
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.PersonAdd
+import androidx.compose.material.icons.filled.SettingsSuggest
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -68,6 +69,12 @@ fun OnboardingScreen(
             technology = R.string.onboarding_step_3_technology,
             description = R.string.onboarding_step_3_description,
             hint = R.string.onboarding_step_3_hint
+        ),
+        OnboardingStep(
+            title = R.string.onboarding_step_4_title,
+            technology = R.string.onboarding_step_4_technology,
+            description = R.string.onboarding_step_4_description,
+            hint = R.string.onboarding_step_4_hint
         )
     )
     var currentStep by remember { mutableIntStateOf(0) }
@@ -184,6 +191,8 @@ fun OnboardingScreen(
 
 @Composable
 private fun DemoPanel(index: Int) {
+    val panelHeight = if (index == 3) 210.dp else 170.dp
+
     Card(
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
@@ -193,7 +202,7 @@ private fun DemoPanel(index: Int) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(170.dp)
+                .height(panelHeight)
                 .padding(16.dp)
         ) {
             when (index) {
@@ -233,7 +242,7 @@ private fun DemoPanel(index: Int) {
                         }
                     }
                 }
-                else -> {
+                2 -> {
                     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
                         Row(
                             horizontalArrangement = Arrangement.spacedBy(10.dp),
@@ -249,6 +258,33 @@ private fun DemoPanel(index: Int) {
                             Icon(Icons.Default.Group, contentDescription = null)
                             Text(localizedStringResource(R.string.onboarding_demo_user_list_edit))
                         }
+                    }
+                }
+                else -> {
+                    Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                        Row(
+                            horizontalArrangement = Arrangement.spacedBy(10.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Icon(Icons.Default.SettingsSuggest, contentDescription = null)
+                            Text(localizedStringResource(R.string.onboarding_demo_stack_title), fontWeight = FontWeight.SemiBold)
+                        }
+                        Text(
+                            localizedStringResource(R.string.onboarding_demo_stack_line_1),
+                            style = MaterialTheme.typography.bodyMedium
+                        )
+                        Text(
+                            localizedStringResource(R.string.onboarding_demo_stack_line_2),
+                            style = MaterialTheme.typography.bodyMedium
+                        )
+                        Text(
+                            localizedStringResource(R.string.onboarding_demo_stack_line_3),
+                            style = MaterialTheme.typography.bodyMedium
+                        )
+                        Text(
+                            localizedStringResource(R.string.onboarding_demo_stack_line_4),
+                            style = MaterialTheme.typography.bodyMedium
+                        )
                     }
                 }
             }

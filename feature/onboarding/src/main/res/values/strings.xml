@@ -17,8 +17,17 @@
     <string name="onboarding_step_3_technology">Room</string>
     <string name="onboarding_step_3_description">El ABM de usuarios existe para mostrar persistencia local con Room. Alta, edición, listado y baja quedan almacenados en base de datos dentro del dispositivo y vuelven a aparecer al reabrir la app.</string>
     <string name="onboarding_step_3_hint">Usá “Alta de usuario”, “Listado de usuarios” y “Editar usuario activo” para recorrer el circuito completo persistido con Room.</string>
+    <string name="onboarding_step_4_title">Tecnologías usadas</string>
+    <string name="onboarding_step_4_technology">Stack Android moderno</string>
+    <string name="onboarding_step_4_description">La app integra Jetpack Compose, Material 3, Navigation Compose, ViewModel, Coroutines, Flow, Hilt, Retrofit, OkHttp, Moshi, Room, Coil, Timber, Kotlinx Serialization, Compose Richtext y LeakCanary, además de tests automáticos con JUnit, kotlinx-coroutines-test, ActivityScenario, UiAutomator, Espresso y Compose UI Test.</string>
+    <string name="onboarding_step_4_hint">Este paso resume el stack completo que sostiene UI, navegación, datos locales, red mockeada, DI, observabilidad, diagnóstico de memoria y validación automática.</string>
     <string name="onboarding_demo_open_drawer">Abrí el drawer</string>
     <string name="onboarding_demo_view_articles">Leer artículos</string>
     <string name="onboarding_demo_user_create">Alta de usuario</string>
     <string name="onboarding_demo_user_list_edit">Listado y edición</string>
+    <string name="onboarding_demo_stack_title">Stack principal</string>
+    <string name="onboarding_demo_stack_line_1">UI: Compose, Material 3 y Navigation Compose</string>
+    <string name="onboarding_demo_stack_line_2">Datos: Room, Retrofit, OkHttp y Moshi</string>
+    <string name="onboarding_demo_stack_line_3">Soporte: Hilt, Flow, Coil, Timber, Serialization y LeakCanary</string>
+    <string name="onboarding_demo_stack_line_4">Tests: JUnit, coroutines-test, ActivityScenario, UiAutomator, Espresso y Compose UI Test</string>
 </resources>

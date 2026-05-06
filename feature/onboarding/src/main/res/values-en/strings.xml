@@ -17,8 +17,17 @@
     <string name="onboarding_step_3_technology">Room</string>
     <string name="onboarding_step_3_description">The user CRUD exists to show local persistence with Room. Create, edit, list, and delete operations are stored in the device database and reappear when reopening the app.</string>
     <string name="onboarding_step_3_hint">Use “Create user”, “User list”, and “Edit active user” to go through the full Room-persisted flow.</string>
+    <string name="onboarding_step_4_title">Technologies used</string>
+    <string name="onboarding_step_4_technology">Modern Android stack</string>
+    <string name="onboarding_step_4_description">The app integrates Jetpack Compose, Material 3, Navigation Compose, ViewModel, Coroutines, Flow, Hilt, Retrofit, OkHttp, Moshi, Room, Coil, Timber, Kotlinx Serialization, Compose Richtext, and LeakCanary, plus automated tests built with JUnit, kotlinx-coroutines-test, ActivityScenario, UiAutomator, Espresso, and Compose UI Test.</string>
+    <string name="onboarding_step_4_hint">This step summarizes the full stack behind the UI, navigation, local data, mocked network layer, DI, observability, memory diagnostics, and automated validation.</string>
     <string name="onboarding_demo_open_drawer">Open drawer</string>
     <string name="onboarding_demo_view_articles">Read articles</string>
     <string name="onboarding_demo_user_create">Create user</string>
     <string name="onboarding_demo_user_list_edit">List and edit</string>
+    <string name="onboarding_demo_stack_title">Core stack</string>
+    <string name="onboarding_demo_stack_line_1">UI: Compose, Material 3, and Navigation Compose</string>
+    <string name="onboarding_demo_stack_line_2">Data: Room, Retrofit, OkHttp, and Moshi</string>
+    <string name="onboarding_demo_stack_line_3">Support: Hilt, Flow, Coil, Timber, Serialization, and LeakCanary</string>
+    <string name="onboarding_demo_stack_line_4">Tests: JUnit, coroutines-test, ActivityScenario, UiAutomator, Espresso, and Compose UI Test</string>
 </resources>
