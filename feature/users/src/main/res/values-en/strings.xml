@@ -1,0 +1,27 @@
+<resources>
+    <string name="users_admin_title">Manager</string>
+    <string name="users_admin_description">From this view you can review, select, edit, and delete persisted users.</string>
+    <string name="users_empty_title">No records</string>
+    <string name="users_empty_message">No users have been added yet.</string>
+    <string name="users_create_first">Create first user</string>
+    <string name="users_select_user">Select</string>
+    <string name="users_selected">Selected</string>
+    <string name="users_active_badge">Active</string>
+    <string name="users_edit_content_description">Edit</string>
+    <string name="users_delete_content_description">Delete</string>
+    <string name="users_delete_confirm">Delete</string>
+    <string name="users_delete_cancel">Cancel</string>
+    <string name="users_delete_title">Confirm deletion</string>
+    <string name="users_delete_message">This action deletes the user persisted in Room.</string>
+    <string name="user_form_edit_title">Edit user</string>
+    <string name="user_form_new_title">New user</string>
+    <string name="user_form_name">Name</string>
+    <string name="user_form_email">Email</string>
+    <string name="user_form_role">Role</string>
+    <string name="user_form_phone">Phone</string>
+    <string name="user_form_phone_hint">+54-9-11-1234-5678</string>
+    <string name="user_form_save_changes">Save changes</string>
+    <string name="user_form_create">Create user</string>
+    <string name="user_error_name_required">Enter a name</string>
+    <string name="user_error_invalid_email">Enter a valid email</string>
+</resources>

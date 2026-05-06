@@ -26,5 +26,5 @@ interface UserDao {
     suspend fun deleteUser(user: UserEntity)
 
     @Query("DELETE FROM users WHERE id = :id")
-    suspend fun deleteUserById(id: Long)
+    fun deleteUserById(id: Long): Int
 }
