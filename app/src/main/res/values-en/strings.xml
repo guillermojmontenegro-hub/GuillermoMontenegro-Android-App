@@ -8,6 +8,9 @@
     <string name="nav_title_home">CV Guillermo Montenegro</string>
     <string name="nav_no_active_user">User CRUD without active user</string>
     <string name="fab_view_articles">Read articles</string>
+    <string name="fab_view_articles_content_description">Open article library</string>
+    <string name="nav_open_menu">Open navigation menu</string>
+    <string name="nav_go_back">Go back</string>
     <string name="drawer_default_avatar">CV</string>
     <string name="drawer_no_active_user">No active user</string>
     <string name="drawer_no_active_user_description">Create a user to manage the CRUD</string>

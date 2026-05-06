@@ -8,6 +8,9 @@
     <string name="nav_title_home">CV Guillermo Montenegro</string>
     <string name="nav_no_active_user">ABM sin usuario activo</string>
     <string name="fab_view_articles">Leer artículos</string>
+    <string name="fab_view_articles_content_description">Abrir biblioteca de artículos</string>
+    <string name="nav_open_menu">Abrir menú de navegación</string>
+    <string name="nav_go_back">Volver</string>
     <string name="drawer_default_avatar">CV</string>
     <string name="drawer_no_active_user">Sin usuario activo</string>
     <string name="drawer_no_active_user_description">Creá un usuario para administrar el ABM</string>

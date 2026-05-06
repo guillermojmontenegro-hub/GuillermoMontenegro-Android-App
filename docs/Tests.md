@@ -183,6 +183,12 @@ La suite todavía no cubre de forma automática:
 ./gradlew :app:connectedDebugAndroidTest
 ```
 
+En GitHub Actions no se ejecutan porque requieren emulador o dispositivo. El pipeline principal solo los compila con:
+
+```bash
+./gradlew :app:assembleDebugAndroidTest
+```
+
 ## Requisitos para tests instrumentados
 
 Para correr los tests instrumentados hace falta:

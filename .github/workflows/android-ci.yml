@@ -37,8 +37,8 @@ jobs:
       - name: Make Gradle wrapper executable
         run: chmod +x ./gradlew
 
-      - name: Lint, test and assemble debug
-        run: ./gradlew lint testDebugUnitTest assembleDebug
+      - name: Lint, unit test, and compile app plus androidTest
+        run: ./gradlew lint testDebugUnitTest assembleDebug :app:assembleDebugAndroidTest
 
       - name: Upload debug APK
         if: success()

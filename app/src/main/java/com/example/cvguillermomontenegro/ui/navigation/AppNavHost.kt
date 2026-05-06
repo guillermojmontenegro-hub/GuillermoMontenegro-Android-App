@@ -318,7 +318,9 @@ private fun CVScaffold(
                         ) {
                             Icon(
                                 imageVector = if (isTopLevel) Icons.Default.Menu else Icons.Default.ArrowBack,
-                                contentDescription = null
+                                contentDescription = localizedStringResource(
+                                    if (isTopLevel) R.string.nav_open_menu else R.string.nav_go_back
+                                )
                             )
                         }
                     }
@@ -331,7 +333,10 @@ private fun CVScaffold(
                     onClick = { onNavigate(Routes.ARTICLES) },
                     modifier = Modifier.scale(articleFabScale),
                     icon = {
-                        Icon(Icons.Default.Article, contentDescription = null)
+                        Icon(
+                            Icons.Default.Article,
+                            contentDescription = localizedStringResource(R.string.fab_view_articles_content_description)
+                        )
                     },
                     text = { Text(localizedStringResource(R.string.fab_view_articles)) }
                 )
