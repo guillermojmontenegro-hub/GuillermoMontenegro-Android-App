@@ -1,0 +1,15 @@
+<resources>
+    <string name="home_explore_articles">Explore articles</string>
+    <string name="home_specialties">Specialties</string>
+    <string name="home_experience">Experience</string>
+    <string name="home_projects">Projects</string>
+    <string name="home_languages">Languages</string>
+    <string name="home_education">Education</string>
+    <string name="home_contact">Contact</string>
+    <string name="contact_location">Location</string>
+    <string name="contact_email">Email</string>
+    <string name="contact_linkedin">LinkedIn</string>
+    <string name="contact_github">GitHub</string>
+    <string name="item_bullet">%1$s%2$s</string>
+    <string name="item_company_period">%1$s · %2$s</string>
+</resources>

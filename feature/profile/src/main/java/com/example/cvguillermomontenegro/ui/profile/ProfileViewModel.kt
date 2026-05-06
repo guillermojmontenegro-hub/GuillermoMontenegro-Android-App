@@ -25,9 +25,10 @@ class ProfileViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(ProfileUiState())
     val uiState: StateFlow<ProfileUiState> = _uiState.asStateFlow()
 
-    init {
+    fun loadProfile(languageTag: String) {
         viewModelScope.launch {
-            runCatching { getProfileUseCase() }
+            _uiState.value = _uiState.value.copy(isLoading = true, error = null)
+            runCatching { getProfileUseCase(languageTag) }
                 .onSuccess { _uiState.value = ProfileUiState(isLoading = false, profile = it) }
                 .onFailure { _uiState.value = ProfileUiState(isLoading = false, error = it.message) }
         }

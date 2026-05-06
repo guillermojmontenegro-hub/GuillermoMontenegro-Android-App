@@ -9,6 +9,9 @@ fun UserEntity.toDomain(): User = User(
     email = email,
     role = role,
     phone = phone,
+    darkModeEnabled = darkModeEnabled,
+    languageTag = languageTag,
+    isActive = isActive,
     updatedAt = updatedAt
 )
 
@@ -18,5 +21,8 @@ fun User.toEntity(): UserEntity = UserEntity(
     email = email,
     role = role,
     phone = phone,
+    darkModeEnabled = darkModeEnabled,
+    languageTag = languageTag,
+    isActive = isActive,
     updatedAt = updatedAt
 )

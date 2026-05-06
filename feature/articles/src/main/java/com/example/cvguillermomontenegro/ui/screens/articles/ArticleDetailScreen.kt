@@ -14,7 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.stringResource
+import com.example.cvguillermomontenegro.ui.i18n.localizedStringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -37,7 +37,7 @@ fun ArticleDetailScreen(
 
     when {
         state.isLoading -> LoadingBox(modifier = Modifier.fillMaxSize())
-        state.error != null -> ErrorBox(message = state.error ?: stringResource(R.string.article_load_error), modifier = Modifier.padding(16.dp))
+        state.error != null -> ErrorBox(message = state.error ?: localizedStringResource(R.string.article_load_error), modifier = Modifier.padding(16.dp))
         state.article != null -> {
             val article = requireNotNull(state.article)
             Column(
@@ -58,7 +58,7 @@ fun ArticleDetailScreen(
                     style = MaterialTheme.typography.headlineSmall,
                     fontWeight = FontWeight.Bold
                 )
-                Text(text = stringResource(R.string.item_date_author, article.date, article.author))
+                Text(text = localizedStringResource(R.string.item_date_author, article.date, article.author))
                 TagFlow(tags = article.tags)
                 RichText {
                     Markdown(

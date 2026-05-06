@@ -4,17 +4,21 @@
     <string name="nav_title_library">Biblioteca</string>
     <string name="nav_title_article">Artículo</string>
     <string name="nav_title_user">Usuario</string>
-    <string name="nav_title_admin">Administración</string>
+    <string name="nav_title_admin">Manage Users</string>
     <string name="nav_title_home">CV Guillermo Montenegro</string>
     <string name="nav_no_active_user">ABM sin usuario activo</string>
-    <string name="fab_view_articles">Ver artículos</string>
+    <string name="fab_view_articles">Leer artículos</string>
+    <string name="fab_view_articles_content_description">Abrir biblioteca de artículos</string>
+    <string name="nav_open_menu">Abrir menú de navegación</string>
+    <string name="nav_go_back">Volver</string>
     <string name="drawer_default_avatar">CV</string>
     <string name="drawer_no_active_user">Sin usuario activo</string>
     <string name="drawer_no_active_user_description">Creá un usuario para administrar el ABM</string>
     <string name="drawer_home">Inicio</string>
-    <string name="drawer_users_list">Listado de usuarios</string>
-    <string name="drawer_user_create">Alta de usuario</string>
-    <string name="drawer_user_edit_active">Editar usuario activo</string>
+    <string name="drawer_users_list">Manage Users</string>
+    <string name="drawer_about_app">Acerca de la app</string>
+    <string name="drawer_dark_mode">Modo nocturno</string>
+    <string name="drawer_light_mode">Modo claro</string>
     <string name="drawer_close">Cerrar panel</string>
 
     <string name="home_explore_articles">Explorar artículos</string>
@@ -56,7 +60,7 @@
     <string name="user_form_email">Email</string>
     <string name="user_form_role">Rol</string>
     <string name="user_form_phone">Teléfono</string>
-    <string name="user_form_phone_hint">+54-9-11-5263-5695</string>
+    <string name="user_form_phone_hint">+54-9-11-1234-5678</string>
     <string name="user_form_save_changes">Guardar cambios</string>
     <string name="user_form_create">Crear usuario</string>
     <string name="user_error_name_required">Ingresá un nombre</string>
@@ -72,16 +76,16 @@
     <string name="onboarding_step_1_technology">Jetpack Compose</string>
     <string name="onboarding_step_1_description">Esta pantalla muestra navegación, layout declarativo y una estética moderna construidos con Jetpack Compose. El drawer y la home sirven para exhibir cómo se arma una UI nativa flexible con Compose.</string>
     <string name="onboarding_step_1_hint">Abrí el drawer desde el icono superior izquierdo para ver cómo Compose resuelve navegación, jerarquía visual y superficies interactivas.</string>
-    <string name="onboarding_step_2_title">Ver artículos</string>
+    <string name="onboarding_step_2_title">Leer artículos</string>
     <string name="onboarding_step_2_technology">Retrofit</string>
     <string name="onboarding_step_2_description">La biblioteca técnica está pensada para mostrar consumo de servicios con Retrofit. Aunque hoy el backend está mockeado dentro de la app, el flujo usa cliente HTTP real, repositorio y parseo de datos como si hablara con una API externa.</string>
-    <string name="onboarding_step_2_hint">Desde la home, tocá el FAB “Ver artículos” para disparar la carga remota y navegar el contenido recibido por Retrofit.</string>
+    <string name="onboarding_step_2_hint">Desde la home, tocá el FAB “Leer artículos” para disparar la carga remota y navegar el contenido recibido por Retrofit.</string>
     <string name="onboarding_step_3_title">ABM de usuarios</string>
     <string name="onboarding_step_3_technology">Room</string>
     <string name="onboarding_step_3_description">El ABM de usuarios existe para mostrar persistencia local con Room. Alta, edición, listado y baja quedan almacenados en base de datos dentro del dispositivo y vuelven a aparecer al reabrir la app.</string>
     <string name="onboarding_step_3_hint">Usá “Alta de usuario”, “Listado de usuarios” y “Editar usuario activo” para recorrer el circuito completo persistido con Room.</string>
     <string name="onboarding_demo_open_drawer">Abrí el drawer</string>
-    <string name="onboarding_demo_view_articles">Ver artículos</string>
+    <string name="onboarding_demo_view_articles">Leer artículos</string>
     <string name="onboarding_demo_user_create">Alta de usuario</string>
     <string name="onboarding_demo_user_list_edit">Listado y edición</string>
 </resources>

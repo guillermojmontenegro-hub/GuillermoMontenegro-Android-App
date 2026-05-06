@@ -16,6 +16,7 @@ import androidx.compose.material.icons.automirrored.filled.MenuBook
 import androidx.compose.material.icons.filled.Group
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.PersonAdd
+import androidx.compose.material.icons.filled.SettingsSuggest
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -33,11 +34,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.annotation.StringRes
 import com.example.cvguillermomontenegro.feature.onboarding.R
+import com.example.cvguillermomontenegro.ui.i18n.localizedStringResource
 
 private data class OnboardingStep(
     @StringRes val title: Int,
@@ -68,6 +69,12 @@ fun OnboardingScreen(
             technology = R.string.onboarding_step_3_technology,
             description = R.string.onboarding_step_3_description,
             hint = R.string.onboarding_step_3_hint
+        ),
+        OnboardingStep(
+            title = R.string.onboarding_step_4_title,
+            technology = R.string.onboarding_step_4_technology,
+            description = R.string.onboarding_step_4_description,
+            hint = R.string.onboarding_step_4_hint
         )
     )
     var currentStep by remember { mutableIntStateOf(0) }
@@ -90,12 +97,12 @@ fun OnboardingScreen(
     ) {
         Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {
             Text(
-                text = stringResource(R.string.onboarding_title),
+                text = localizedStringResource(R.string.onboarding_title),
                 style = MaterialTheme.typography.headlineMedium,
                 fontWeight = FontWeight.Bold
             )
             Text(
-                text = stringResource(R.string.onboarding_step_counter, currentStep + 1, steps.size),
+                text = localizedStringResource(R.string.onboarding_step_counter, currentStep + 1, steps.size),
                 style = MaterialTheme.typography.labelLarge,
                 color = MaterialTheme.colorScheme.primary
             )
@@ -112,21 +119,21 @@ fun OnboardingScreen(
                 ) {
                     DemoPanel(index = currentStep)
                     Text(
-                        text = stringResource(step.title),
+                        text = localizedStringResource(step.title),
                         style = MaterialTheme.typography.titleLarge,
                         fontWeight = FontWeight.SemiBold
                     )
                     Text(
-                        text = stringResource(R.string.onboarding_technology, stringResource(step.technology)),
+                        text = localizedStringResource(R.string.onboarding_technology, localizedStringResource(step.technology)),
                         style = MaterialTheme.typography.labelLarge,
                         color = MaterialTheme.colorScheme.primary
                     )
                     Text(
-                        text = stringResource(step.description),
+                        text = localizedStringResource(step.description),
                         style = MaterialTheme.typography.bodyLarge
                     )
                     Text(
-                        text = stringResource(step.hint),
+                        text = localizedStringResource(step.hint),
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -165,7 +172,7 @@ fun OnboardingScreen(
                         onClick = { currentStep -= 1 },
                         modifier = Modifier.weight(1f)
                     ) {
-                        Text(stringResource(R.string.onboarding_back))
+                        Text(localizedStringResource(R.string.onboarding_back))
                     }
                 }
                 Button(
@@ -175,7 +182,7 @@ fun OnboardingScreen(
                     modifier = Modifier.weight(1f),
                     colors = ButtonDefaults.buttonColors()
                 ) {
-                    Text(stringResource(if (isLast) R.string.onboarding_enter else R.string.onboarding_next))
+                    Text(localizedStringResource(if (isLast) R.string.onboarding_enter else R.string.onboarding_next))
                 }
             }
         }
@@ -184,6 +191,8 @@ fun OnboardingScreen(
 
 @Composable
 private fun DemoPanel(index: Int) {
+    val panelHeight = if (index == 3) 210.dp else 170.dp
+
     Card(
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
@@ -193,7 +202,7 @@ private fun DemoPanel(index: Int) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(170.dp)
+                .height(panelHeight)
                 .padding(16.dp)
         ) {
             when (index) {
@@ -204,7 +213,7 @@ private fun DemoPanel(index: Int) {
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Icon(Icons.Default.Menu, contentDescription = null)
-                            Text(stringResource(R.string.onboarding_demo_open_drawer), fontWeight = FontWeight.SemiBold)
+                            Text(localizedStringResource(R.string.onboarding_demo_open_drawer), fontWeight = FontWeight.SemiBold)
                         }
                         repeat(3) {
                             Box(
@@ -229,26 +238,53 @@ private fun DemoPanel(index: Int) {
                             modifier = Modifier.align(Alignment.BottomEnd)
                         ) {
                             Icon(Icons.AutoMirrored.Filled.Article, contentDescription = null)
-                            Text(" ${stringResource(R.string.onboarding_demo_view_articles)}")
+                            Text(" ${localizedStringResource(R.string.onboarding_demo_view_articles)}")
                         }
                     }
                 }
-                else -> {
+                2 -> {
                     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
                         Row(
                             horizontalArrangement = Arrangement.spacedBy(10.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Icon(Icons.Default.PersonAdd, contentDescription = null)
-                            Text(stringResource(R.string.onboarding_demo_user_create))
+                            Text(localizedStringResource(R.string.onboarding_demo_user_create))
                         }
                         Row(
                             horizontalArrangement = Arrangement.spacedBy(10.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Icon(Icons.Default.Group, contentDescription = null)
-                            Text(stringResource(R.string.onboarding_demo_user_list_edit))
+                            Text(localizedStringResource(R.string.onboarding_demo_user_list_edit))
                         }
+                    }
+                }
+                else -> {
+                    Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                        Row(
+                            horizontalArrangement = Arrangement.spacedBy(10.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Icon(Icons.Default.SettingsSuggest, contentDescription = null)
+                            Text(localizedStringResource(R.string.onboarding_demo_stack_title), fontWeight = FontWeight.SemiBold)
+                        }
+                        Text(
+                            localizedStringResource(R.string.onboarding_demo_stack_line_1),
+                            style = MaterialTheme.typography.bodyMedium
+                        )
+                        Text(
+                            localizedStringResource(R.string.onboarding_demo_stack_line_2),
+                            style = MaterialTheme.typography.bodyMedium
+                        )
+                        Text(
+                            localizedStringResource(R.string.onboarding_demo_stack_line_3),
+                            style = MaterialTheme.typography.bodyMedium
+                        )
+                        Text(
+                            localizedStringResource(R.string.onboarding_demo_stack_line_4),
+                            style = MaterialTheme.typography.bodyMedium
+                        )
                     }
                 }
             }

@@ -19,3 +19,4 @@ local.properties
 .codex/
 .agents/
 /skills-lock.json
+ANDROID_MIGRATION_CHECKLIST.md

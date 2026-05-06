@@ -1,0 +1,8 @@
+<resources>
+    <string name="articles_library_title">Technical library</string>
+    <string name="articles_search_label">Search by title or content</string>
+    <string name="articles_unknown_error">Unknown error</string>
+    <string name="articles_empty_filters">No articles match the current filters.</string>
+    <string name="article_load_error">The article could not be loaded</string>
+    <string name="item_date_author">%1$s · %2$s</string>
+</resources>

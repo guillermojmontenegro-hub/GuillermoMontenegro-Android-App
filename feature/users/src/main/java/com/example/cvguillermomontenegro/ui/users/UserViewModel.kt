@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -38,6 +39,10 @@ class UserViewModel @Inject constructor(
     private val deleteUserByIdUseCase: DeleteUserByIdUseCase
 ) : ViewModel() {
 
+    init {
+        ensureDefaultUser()
+    }
+
     val users: StateFlow<List<User>> = getUsersUseCase()
         .stateIn(
             scope = viewModelScope,
@@ -55,8 +60,8 @@ class UserViewModel @Inject constructor(
         }
 
         viewModelScope.launch {
-            val user = getUserByIdUseCase(userId) ?: return@launch
-            _formState.value = user.toFormState()
+            val user = getUserByIdUseCase(userId)
+            _formState.value = user?.toFormState() ?: UserFormState()
         }
     }
 
@@ -71,7 +76,7 @@ class UserViewModel @Inject constructor(
     fun updateRole(value: String) = _formState.update { it.copy(role = value) }
 
     fun updatePhone(value: String) = _formState.update {
-        it.copy(phone = formatPhoneNumber(value))
+        it.copy(phone = PhoneNumberFormatter.normalize(value))
     }
 
     fun saveUser(onSuccess: () -> Unit) {
@@ -81,13 +86,19 @@ class UserViewModel @Inject constructor(
 
         viewModelScope.launch {
             _formState.update { it.copy(isSaving = true) }
+            val existingUser = current.id.takeIf { it > 0 }?.let { id ->
+                users.value.firstOrNull { it.id == id }
+            }
             saveUserUseCase(
                 User(
                     id = current.id,
                     name = current.name.trim(),
                     email = current.email.trim(),
                     role = current.role.trim(),
-                    phone = current.phone.trim(),
+                    phone = PhoneNumberFormatter.format(current.phone),
+                    darkModeEnabled = existingUser?.darkModeEnabled ?: false,
+                    languageTag = existingUser?.languageTag ?: "es",
+                    isActive = existingUser?.isActive ?: false,
                     updatedAt = System.currentTimeMillis()
                 )
             )
@@ -98,7 +109,31 @@ class UserViewModel @Inject constructor(
 
     fun deleteUser(id: Long) {
         viewModelScope.launch {
+            val wasActive = users.value.firstOrNull { it.id == id }?.isActive == true
             deleteUserByIdUseCase(id)
+            if (wasActive) {
+                users.value.firstOrNull { it.id != id }?.let { selectActiveUser(it) }
+            }
+        }
+    }
+
+    fun setDarkMode(user: User, enabled: Boolean) {
+        saveSettings(user.copy(darkModeEnabled = enabled))
+    }
+
+    fun selectActiveUser(user: User) {
+        viewModelScope.launch {
+            users.value.forEach { currentUser ->
+                val shouldBeActive = currentUser.id == user.id
+                if (currentUser.isActive != shouldBeActive) {
+                    saveUserUseCase(
+                        currentUser.copy(
+                            isActive = shouldBeActive,
+                            updatedAt = if (shouldBeActive) System.currentTimeMillis() else currentUser.updatedAt
+                        )
+                    )
+                }
+            }
         }
     }
 
@@ -116,31 +151,44 @@ class UserViewModel @Inject constructor(
         name = name,
         email = email,
         role = role,
-        phone = formatPhoneNumber(phone)
+        phone = PhoneNumberFormatter.normalize(phone)
     )
 
-    private fun formatPhoneNumber(input: String): String {
-        val digits = input.filter(Char::isDigit).take(13)
-        if (digits.isEmpty()) return ""
-
-        val groups = listOf(2, 1, 2, 4, 4)
-        var index = 0
-        val parts = mutableListOf<String>()
-
-        for (size in groups) {
-            if (index >= digits.length) break
-            val end = (index + size).coerceAtMost(digits.length)
-            parts += digits.substring(index, end)
-            index = end
+    private fun saveSettings(user: User) {
+        viewModelScope.launch {
+            saveUserUseCase(user.copy(updatedAt = System.currentTimeMillis()))
         }
+    }
 
-        return buildString {
-            append("+")
-            append(parts.joinToString("-"))
+    private fun ensureDefaultUser() {
+        viewModelScope.launch {
+            val currentUsers = getUsersUseCase().first()
+            if (currentUsers.isNotEmpty()) {
+                currentUsers
+                    .firstOrNull { it.email == DEFAULT_USER_EMAIL && it.role == "Developer" }
+                    ?.let { saveUserUseCase(it.copy(role = DEFAULT_USER_ROLE)) }
+                return@launch
+            }
+
+            saveUserUseCase(
+                User(
+                    name = DEFAULT_USER_NAME,
+                    email = DEFAULT_USER_EMAIL,
+                    role = DEFAULT_USER_ROLE,
+                    phone = "",
+                    darkModeEnabled = true,
+                    languageTag = "es",
+                    isActive = true,
+                    updatedAt = System.currentTimeMillis()
+                )
+            )
         }
     }
 
     private companion object {
         val EMAIL_REGEX = Regex("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")
+        const val DEFAULT_USER_NAME = "Guillermo Montenegro"
+        const val DEFAULT_USER_EMAIL = "guillermo@example.com"
+        const val DEFAULT_USER_ROLE = "Desarrollador"
     }
 }

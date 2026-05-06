@@ -58,6 +58,7 @@ dependencies {
     implementation(project(":feature:onboarding"))
 
     implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.activity.compose)
@@ -87,6 +88,7 @@ dependencies {
     implementation(libs.moshi.kotlin)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.coil.compose)
+    implementation(libs.jakewharton.timber)
     implementation(libs.google.material)
     implementation(libs.compose.richtext.commonmark) {
         exclude(group = "com.squareup.leakcanary")
@@ -100,6 +102,7 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
+    androidTestImplementation(libs.androidx.test.uiautomator)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
     debugImplementation(libs.square.leakcanary.android)

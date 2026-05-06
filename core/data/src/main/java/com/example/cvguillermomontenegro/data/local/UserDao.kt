@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface UserDao {
-    @Query("SELECT * FROM users ORDER BY updatedAt DESC, name ASC")
+    @Query("SELECT * FROM users ORDER BY isActive DESC, updatedAt DESC, name ASC")
     fun getAllUsers(): Flow<List<UserEntity>>
 
     @Query("SELECT * FROM users WHERE id = :id")
@@ -26,5 +26,5 @@ interface UserDao {
     suspend fun deleteUser(user: UserEntity)
 
     @Query("DELETE FROM users WHERE id = :id")
-    suspend fun deleteUserById(id: Long)
+    fun deleteUserById(id: Long): Int
 }

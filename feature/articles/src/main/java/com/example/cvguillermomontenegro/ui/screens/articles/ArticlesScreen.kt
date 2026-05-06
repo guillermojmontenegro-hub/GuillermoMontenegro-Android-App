@@ -17,7 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.stringResource
+import com.example.cvguillermomontenegro.ui.i18n.localizedStringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -42,12 +42,12 @@ fun ArticlesScreen(
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         item {
-            SectionCard(title = stringResource(R.string.articles_library_title)) {
+            SectionCard(title = localizedStringResource(R.string.articles_library_title)) {
                 OutlinedTextField(
                     value = state.query,
                     onValueChange = viewModel::updateQuery,
                     modifier = Modifier.fillMaxWidth(),
-                    label = { Text(stringResource(R.string.articles_search_label)) },
+                    label = { Text(localizedStringResource(R.string.articles_search_label)) },
                     singleLine = true
                 )
                 if (state.availableTags.isNotEmpty()) {
@@ -62,9 +62,9 @@ fun ArticlesScreen(
 
         when {
             state.isLoading -> item { LoadingBox() }
-            state.error != null -> item { ErrorBox(state.error ?: stringResource(R.string.articles_unknown_error)) }
+            state.error != null -> item { ErrorBox(state.error ?: localizedStringResource(R.string.articles_unknown_error)) }
             state.filteredArticles.isEmpty() -> item {
-                ErrorBox(stringResource(R.string.articles_empty_filters))
+                ErrorBox(localizedStringResource(R.string.articles_empty_filters))
             }
             else -> items(state.filteredArticles) { article ->
                 Card(

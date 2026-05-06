@@ -18,6 +18,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -25,7 +26,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
+import com.example.cvguillermomontenegro.ui.i18n.localizedStringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -41,11 +42,16 @@ import com.example.cvguillermomontenegro.ui.screens.collectAsStateWithLifecycleC
 
 @Composable
 fun HomeScreen(
+    languageTag: String,
     onOpenArticles: () -> Unit,
     viewModel: ProfileViewModel = hiltViewModel()
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycleCompat()
     val context = LocalContext.current
+
+    LaunchedEffect(languageTag) {
+        viewModel.loadProfile(languageTag)
+    }
 
     LazyColumn(
         modifier = Modifier
@@ -118,7 +124,7 @@ fun HomeScreen(
                             contentColor = MaterialTheme.colorScheme.onPrimaryContainer
                         )
                     ) {
-                        Text(stringResource(R.string.home_explore_articles))
+                        Text(localizedStringResource(R.string.home_explore_articles))
                     }
                 }
             }
@@ -127,7 +133,7 @@ fun HomeScreen(
         state.profile?.let { profile ->
             item {
                 SectionCard(
-                    title = stringResource(R.string.home_specialties),
+                    title = localizedStringResource(R.string.home_specialties),
                     modifier = Modifier.padding(horizontal = 16.dp)
                 ) {
                     TagFlow(tags = profile.skills)
@@ -136,7 +142,7 @@ fun HomeScreen(
 
             item {
                 SectionCard(
-                    title = stringResource(R.string.home_experience),
+                    title = localizedStringResource(R.string.home_experience),
                     modifier = Modifier.padding(horizontal = 16.dp)
                 ) {
                     Column(verticalArrangement = Arrangement.spacedBy(18.dp)) {
@@ -148,12 +154,12 @@ fun HomeScreen(
                                     style = MaterialTheme.typography.titleSmall
                                 )
                                 Text(
-                                    text = stringResource(R.string.item_company_period, item.company, item.period),
+                                    text = localizedStringResource(R.string.item_company_period, item.company, item.period),
                                     style = MaterialTheme.typography.bodySmall,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant
                                 )
                                 item.highlights.forEach { highlight ->
-                                    Text(text = stringResource(R.string.item_bullet, "• ", highlight), style = MaterialTheme.typography.bodyMedium)
+                                    Text(text = localizedStringResource(R.string.item_bullet, "• ", highlight), style = MaterialTheme.typography.bodyMedium)
                                 }
                             }
                         }
@@ -167,17 +173,17 @@ fun HomeScreen(
                     horizontalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
                     SectionCard(
-                        title = stringResource(R.string.home_projects),
+                        title = localizedStringResource(R.string.home_projects),
                         modifier = Modifier.weight(1f)
                     ) {
                         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                             profile.projects.take(4).forEach { project ->
-                                Text(text = stringResource(R.string.item_bullet, "• ", project), style = MaterialTheme.typography.bodyMedium)
+                                Text(text = localizedStringResource(R.string.item_bullet, "• ", project), style = MaterialTheme.typography.bodyMedium)
                             }
                         }
                     }
                     SectionCard(
-                        title = stringResource(R.string.home_languages),
+                        title = localizedStringResource(R.string.home_languages),
                         modifier = Modifier.width(148.dp)
                     ) {
                         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -196,14 +202,14 @@ fun HomeScreen(
 
             item {
                 SectionCard(
-                    title = stringResource(R.string.home_education),
+                    title = localizedStringResource(R.string.home_education),
                     modifier = Modifier.padding(horizontal = 16.dp)
                 ) {
                     profile.education.forEach { education ->
                         Column(modifier = Modifier.padding(bottom = 10.dp)) {
                             Text(text = education.title, fontWeight = FontWeight.SemiBold)
                             Text(
-                                text = stringResource(R.string.item_company_period, education.institution, education.period),
+                                text = localizedStringResource(R.string.item_company_period, education.institution, education.period),
                                 style = MaterialTheme.typography.bodySmall,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
@@ -214,19 +220,19 @@ fun HomeScreen(
 
             item {
                 SectionCard(
-                    title = stringResource(R.string.home_contact),
+                    title = localizedStringResource(R.string.home_contact),
                     modifier = Modifier.padding(horizontal = 16.dp, vertical = 16.dp)
                 ) {
-                    InfoRow(label = stringResource(R.string.contact_location), value = profile.contact.location)
-                    InfoRow(label = stringResource(R.string.contact_email), value = profile.contact.email) {
+                    InfoRow(label = localizedStringResource(R.string.contact_location), value = profile.contact.location)
+                    InfoRow(label = localizedStringResource(R.string.contact_email), value = profile.contact.email) {
                         context.startActivity(
                             Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:${profile.contact.email}"))
                         )
                     }
-                    InfoRow(label = stringResource(R.string.contact_linkedin), value = profile.contact.linkedin) {
+                    InfoRow(label = localizedStringResource(R.string.contact_linkedin), value = profile.contact.linkedin) {
                         context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(profile.contact.linkedin)))
                     }
-                    InfoRow(label = stringResource(R.string.contact_github), value = profile.contact.github) {
+                    InfoRow(label = localizedStringResource(R.string.contact_github), value = profile.contact.github) {
                         context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(profile.contact.github)))
                     }
                 }

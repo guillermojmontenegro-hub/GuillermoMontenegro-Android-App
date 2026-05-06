@@ -6,5 +6,8 @@ data class User(
     val email: String = "",
     val role: String = "",
     val phone: String = "",
+    val darkModeEnabled: Boolean = false,
+    val languageTag: String = "es",
+    val isActive: Boolean = false,
     val updatedAt: Long = System.currentTimeMillis()
 )
