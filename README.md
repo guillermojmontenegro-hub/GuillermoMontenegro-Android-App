@@ -18,6 +18,7 @@ En concreto, esta app me sirve para mostrar:
 - cómo modularizo lógica de acceso mediante casos de uso
 - cómo manejo estado de pantalla con `ViewModel` y `Flow`
 - cómo conecto una capa remota con `Retrofit` y `OkHttp`
+- cómo centralizo logs de app y red con `Timber`
 - cómo persisto datos locales con `Room`
 - cómo inyecto dependencias con `Hilt`
 - cómo inspecciono problemas de memoria con `LeakCanary`
@@ -36,6 +37,7 @@ Actualmente la app incluye:
 - ABM de usuarios con alta, edición y baja
 - persistencia local de usuarios en base de datos `Room`
 - carga de perfil y artículos desde assets y una capa remota mockeada
+- logging base de aplicación y red centralizado con `Timber`
 
 ## Stack y por qué lo usé
 
@@ -109,6 +111,18 @@ Para los artículos usé `Retrofit` con `OkHttp` y `Moshi`. Aunque hoy la fuente
 
 Hice esto así porque quería demostrar una integración remota desacoplada del backend definitivo. Si mañana reemplazo el mock por un servicio real, la UI no debería enterarse demasiado.
 
+### Timber
+
+Sumé `Timber` como sistema de logging base para evitar depender de llamadas dispersas a `Log.*` y dejar un punto único para observar lo que hace la app.
+
+Hoy lo uso para:
+
+- inicializar logging global desde `Application`
+- centralizar logs manuales de la app
+- redirigir el `HttpLoggingInterceptor` de `OkHttp` al mismo flujo de logs
+
+Esto me deja la puerta abierta para endurecer el comportamiento por entorno, filtrar categorías o enviar eventos a otra herramienta más adelante sin reescribir todos los puntos de log.
+
 ### Kotlinx Serialization
 
 Uso `kotlinx.serialization` para leer contenido local desde assets, especialmente el perfil profesional en JSON. Me resulta una opción liviana y clara para parseo de contenido estático dentro de la app.
@@ -137,6 +151,8 @@ Para el detalle de artículos integré `compose-richtext` y así renderizo Markd
 Mantengo `LeakCanary` activo en `debug` porque me interesa que el proyecto también refleje prácticas de diagnóstico, no solo features. Si una navegación, pantalla o flujo de Compose empieza a retener memoria de forma incorrecta, quiero tener visibilidad temprana del problema.
 
 En este proyecto además dejé explícito el manejo de su dependencia para que siga funcionando aun cuando otras librerías traigan transitivas conflictivas.
+
+Los logs textuales de `LeakCanary` se ven en `Logcat` filtrando por `LeakCanary`. Los heap dumps y reportes quedan, por defecto, en el almacenamiento interno de la app, dentro de `files/leakcanary/`, es decir en una ruta equivalente a `/data/user/0/com.example.cvguillermomontenegro/files/leakcanary/`.
 
 ## Arquitectura
 
@@ -204,6 +220,8 @@ También puedo compilarlo por línea de comandos con:
 ```bash
 ./gradlew assembleDebug
 ```
+
+Para publicar la app, la idea es apoyarme en un flujo de CI/CD que mantenga el proceso más consistente y automatizable.
 
 ## Estado actual
 

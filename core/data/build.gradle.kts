@@ -41,4 +41,5 @@ dependencies {
     implementation(libs.moshi.core)
     implementation(libs.moshi.kotlin)
     implementation(libs.kotlinx.serialization.json)
+    implementation(libs.jakewharton.timber)
 }

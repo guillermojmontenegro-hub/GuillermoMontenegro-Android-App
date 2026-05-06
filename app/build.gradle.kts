@@ -87,6 +87,7 @@ dependencies {
     implementation(libs.moshi.kotlin)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.coil.compose)
+    implementation(libs.jakewharton.timber)
     implementation(libs.google.material)
     implementation(libs.compose.richtext.commonmark) {
         exclude(group = "com.squareup.leakcanary")
