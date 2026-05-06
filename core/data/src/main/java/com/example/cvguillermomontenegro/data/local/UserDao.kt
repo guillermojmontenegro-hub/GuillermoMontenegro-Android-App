@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface UserDao {
-    @Query("SELECT * FROM users ORDER BY updatedAt DESC, name ASC")
+    @Query("SELECT * FROM users ORDER BY isActive DESC, updatedAt DESC, name ASC")
     fun getAllUsers(): Flow<List<UserEntity>>
 
     @Query("SELECT * FROM users WHERE id = :id")

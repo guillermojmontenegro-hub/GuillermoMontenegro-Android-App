@@ -7,6 +7,10 @@ La app combina dos objetivos:
 - presentar mi perfil, experiencia, proyectos, artículos técnicos y contacto
 - exhibir una base técnica moderna con UI declarativa, persistencia local, consumo remoto mockeado e inyección de dependencias
 
+## Documentación
+
+- [Tests automáticos](docs/Tests.md)
+
 ## Qué quise mostrar con esta app
 
 Quise que el proyecto funcione como una demo técnica relativamente realista. Por eso no dejé la app reducida a pantallas estáticas, sino que sumé navegación, onboarding, carga de contenido, detalle de artículos, ABM de usuarios y persistencia local.
@@ -219,6 +223,17 @@ También puedo compilarlo por línea de comandos con:
 
 ```bash
 ./gradlew assembleDebug
+```
+
+## Tests
+
+La documentación completa de pruebas está en [docs/Tests.md](docs/Tests.md).
+
+Comandos principales:
+
+```bash
+./gradlew testDebugUnitTest
+./gradlew :app:connectedDebugAndroidTest
 ```
 
 Para publicar la app, la idea es apoyarme en un flujo de CI/CD que mantenga el proceso más consistente y automatizable.

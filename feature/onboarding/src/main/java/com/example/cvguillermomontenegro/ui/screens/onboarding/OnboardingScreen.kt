@@ -33,11 +33,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.annotation.StringRes
 import com.example.cvguillermomontenegro.feature.onboarding.R
+import com.example.cvguillermomontenegro.ui.i18n.localizedStringResource
 
 private data class OnboardingStep(
     @StringRes val title: Int,
@@ -90,12 +90,12 @@ fun OnboardingScreen(
     ) {
         Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {
             Text(
-                text = stringResource(R.string.onboarding_title),
+                text = localizedStringResource(R.string.onboarding_title),
                 style = MaterialTheme.typography.headlineMedium,
                 fontWeight = FontWeight.Bold
             )
             Text(
-                text = stringResource(R.string.onboarding_step_counter, currentStep + 1, steps.size),
+                text = localizedStringResource(R.string.onboarding_step_counter, currentStep + 1, steps.size),
                 style = MaterialTheme.typography.labelLarge,
                 color = MaterialTheme.colorScheme.primary
             )
@@ -112,21 +112,21 @@ fun OnboardingScreen(
                 ) {
                     DemoPanel(index = currentStep)
                     Text(
-                        text = stringResource(step.title),
+                        text = localizedStringResource(step.title),
                         style = MaterialTheme.typography.titleLarge,
                         fontWeight = FontWeight.SemiBold
                     )
                     Text(
-                        text = stringResource(R.string.onboarding_technology, stringResource(step.technology)),
+                        text = localizedStringResource(R.string.onboarding_technology, localizedStringResource(step.technology)),
                         style = MaterialTheme.typography.labelLarge,
                         color = MaterialTheme.colorScheme.primary
                     )
                     Text(
-                        text = stringResource(step.description),
+                        text = localizedStringResource(step.description),
                         style = MaterialTheme.typography.bodyLarge
                     )
                     Text(
-                        text = stringResource(step.hint),
+                        text = localizedStringResource(step.hint),
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -165,7 +165,7 @@ fun OnboardingScreen(
                         onClick = { currentStep -= 1 },
                         modifier = Modifier.weight(1f)
                     ) {
-                        Text(stringResource(R.string.onboarding_back))
+                        Text(localizedStringResource(R.string.onboarding_back))
                     }
                 }
                 Button(
@@ -175,7 +175,7 @@ fun OnboardingScreen(
                     modifier = Modifier.weight(1f),
                     colors = ButtonDefaults.buttonColors()
                 ) {
-                    Text(stringResource(if (isLast) R.string.onboarding_enter else R.string.onboarding_next))
+                    Text(localizedStringResource(if (isLast) R.string.onboarding_enter else R.string.onboarding_next))
                 }
             }
         }
@@ -204,7 +204,7 @@ private fun DemoPanel(index: Int) {
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Icon(Icons.Default.Menu, contentDescription = null)
-                            Text(stringResource(R.string.onboarding_demo_open_drawer), fontWeight = FontWeight.SemiBold)
+                            Text(localizedStringResource(R.string.onboarding_demo_open_drawer), fontWeight = FontWeight.SemiBold)
                         }
                         repeat(3) {
                             Box(
@@ -229,7 +229,7 @@ private fun DemoPanel(index: Int) {
                             modifier = Modifier.align(Alignment.BottomEnd)
                         ) {
                             Icon(Icons.AutoMirrored.Filled.Article, contentDescription = null)
-                            Text(" ${stringResource(R.string.onboarding_demo_view_articles)}")
+                            Text(" ${localizedStringResource(R.string.onboarding_demo_view_articles)}")
                         }
                     }
                 }
@@ -240,14 +240,14 @@ private fun DemoPanel(index: Int) {
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Icon(Icons.Default.PersonAdd, contentDescription = null)
-                            Text(stringResource(R.string.onboarding_demo_user_create))
+                            Text(localizedStringResource(R.string.onboarding_demo_user_create))
                         }
                         Row(
                             horizontalArrangement = Arrangement.spacedBy(10.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Icon(Icons.Default.Group, contentDescription = null)
-                            Text(stringResource(R.string.onboarding_demo_user_list_edit))
+                            Text(localizedStringResource(R.string.onboarding_demo_user_list_edit))
                         }
                     }
                 }

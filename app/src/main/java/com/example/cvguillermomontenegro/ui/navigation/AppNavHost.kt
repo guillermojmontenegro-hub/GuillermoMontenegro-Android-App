@@ -14,11 +14,11 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Article
-import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.DarkMode
 import androidx.compose.material.icons.filled.Group
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material.icons.filled.PersonAdd
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.infiniteRepeatable
@@ -46,7 +46,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
+import com.example.cvguillermomontenegro.ui.i18n.localizedStringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -62,7 +62,6 @@ import com.example.cvguillermomontenegro.domain.model.User
 import com.example.cvguillermomontenegro.ui.components.UserAvatar
 import com.example.cvguillermomontenegro.ui.screens.articles.ArticleDetailScreen
 import com.example.cvguillermomontenegro.ui.screens.articles.ArticlesScreen
-import com.example.cvguillermomontenegro.ui.screens.collectAsStateWithLifecycleCompat
 import com.example.cvguillermomontenegro.ui.screens.home.HomeScreen
 import com.example.cvguillermomontenegro.ui.screens.onboarding.OnboardingScreen
 import com.example.cvguillermomontenegro.ui.screens.users.UserFormScreen
@@ -74,14 +73,15 @@ import androidx.compose.material3.rememberDrawerState
 @Composable
 fun AppNavHost(
     modifier: Modifier = Modifier,
-    navController: NavHostController = rememberNavController()
+    navController: NavHostController = rememberNavController(),
+    userViewModel: UserViewModel = hiltViewModel(),
+    activeUser: User? = null,
+    languageTag: String = "es",
+    darkModeEnabled: Boolean = false
 ) {
     val context = LocalContext.current
     val prefs = remember { context.getSharedPreferences("cv_app_prefs", android.content.Context.MODE_PRIVATE) }
     val shouldShowOnboarding = remember { !prefs.getBoolean("onboarding_seen", false) }
-    val userViewModel: UserViewModel = hiltViewModel()
-    val users by userViewModel.users.collectAsStateWithLifecycleCompat()
-    val activeUser = users.firstOrNull()
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
 
@@ -101,6 +101,7 @@ fun AppNavHost(
                 AppDrawerContent(
                     activeUser = activeUser,
                     currentRoute = currentRoute,
+                    darkModeEnabled = darkModeEnabled,
                     onClose = { scope.launch { drawerState.close() } },
                     onNavigateHome = {
                         scope.launch { drawerState.close() }
@@ -110,13 +111,12 @@ fun AppNavHost(
                         scope.launch { drawerState.close() }
                         navController.navigate(Routes.USERS)
                     },
-                    onCreateUser = {
+                    onNavigateAbout = {
                         scope.launch { drawerState.close() }
-                        navController.navigate(Routes.USER_FORM)
+                        navController.navigate(Routes.ONBOARDING)
                     },
-                    onEditActiveUser = { user ->
-                        scope.launch { drawerState.close() }
-                        navController.navigate(Routes.userForm(user.id))
+                    onToggleDarkMode = { user ->
+                        userViewModel.setDarkMode(user, !user.darkModeEnabled)
                     }
                 )
             }
@@ -138,6 +138,7 @@ fun AppNavHost(
                 }
                 composable(Routes.HOME) {
                     HomeScreen(
+                        languageTag = languageTag,
                         onOpenArticles = { navController.navigate(Routes.ARTICLES) }
                     )
                 }
@@ -179,11 +180,12 @@ fun AppNavHost(
 private fun AppDrawerContent(
     activeUser: User?,
     currentRoute: String,
+    darkModeEnabled: Boolean,
     onClose: () -> Unit,
     onNavigateHome: () -> Unit,
     onNavigateUsers: () -> Unit,
-    onCreateUser: () -> Unit,
-    onEditActiveUser: (User) -> Unit
+    onNavigateAbout: () -> Unit,
+    onToggleDarkMode: (User) -> Unit
 ) {
     ModalDrawerSheet(
         modifier = Modifier.fillMaxHeight(),
@@ -198,16 +200,16 @@ private fun AppDrawerContent(
         ) {
             Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 UserAvatar(
-                    label = activeUser?.name?.take(1) ?: stringResource(R.string.drawer_default_avatar),
+                    label = activeUser?.name?.take(1) ?: localizedStringResource(R.string.drawer_default_avatar),
                     modifier = Modifier.size(52.dp)
                 )
                 Text(
-                    text = activeUser?.name ?: stringResource(R.string.drawer_no_active_user),
+                    text = activeUser?.name ?: localizedStringResource(R.string.drawer_no_active_user),
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.SemiBold
                 )
                 Text(
-                    text = activeUser?.email ?: stringResource(R.string.drawer_no_active_user_description),
+                    text = activeUser?.email ?: localizedStringResource(R.string.drawer_no_active_user_description),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
@@ -221,35 +223,40 @@ private fun AppDrawerContent(
             }
 
             NavigationDrawerItem(
-                label = { Text(stringResource(R.string.drawer_home)) },
+                label = { Text(localizedStringResource(R.string.drawer_home)) },
                 selected = currentRoute == Routes.HOME,
                 onClick = onNavigateHome,
                 icon = { Icon(Icons.Default.Home, contentDescription = null) }
             )
             NavigationDrawerItem(
-                label = { Text(stringResource(R.string.drawer_users_list)) },
+                label = { Text(localizedStringResource(R.string.drawer_users_list)) },
                 selected = currentRoute == Routes.USERS,
                 onClick = onNavigateUsers,
                 icon = { Icon(Icons.Default.Group, contentDescription = null) }
             )
-            NavigationDrawerItem(
-                label = { Text(stringResource(R.string.drawer_user_create)) },
-                selected = false,
-                onClick = onCreateUser,
-                icon = { Icon(Icons.Default.PersonAdd, contentDescription = null) }
-            )
-            if (activeUser != null) {
-                NavigationDrawerItem(
-                    label = { Text(stringResource(R.string.drawer_user_edit_active)) },
-                    selected = currentRoute.startsWith("userForm"),
-                    onClick = { onEditActiveUser(activeUser) },
-                    icon = { Icon(Icons.Default.Edit, contentDescription = null) }
-                )
+
+            val darkModeLabel = if (darkModeEnabled) {
+                localizedStringResource(R.string.drawer_light_mode)
+            } else {
+                localizedStringResource(R.string.drawer_dark_mode)
             }
+            NavigationDrawerItem(
+                label = { Text(darkModeLabel) },
+                selected = darkModeEnabled,
+                onClick = { activeUser?.let(onToggleDarkMode) },
+                icon = { Icon(Icons.Default.DarkMode, contentDescription = null) }
+            )
+
+            NavigationDrawerItem(
+                label = { Text(localizedStringResource(R.string.drawer_about_app)) },
+                selected = currentRoute == Routes.ONBOARDING,
+                onClick = onNavigateAbout,
+                icon = { Icon(Icons.Default.Info, contentDescription = null) }
+            )
 
             Spacer(modifier = Modifier.weight(1f))
             NavigationDrawerItem(
-                label = { Text(stringResource(R.string.drawer_close)) },
+                label = { Text(localizedStringResource(R.string.drawer_close)) },
                 selected = false,
                 onClick = onClose,
                 icon = { Icon(Icons.Default.ArrowBack, contentDescription = null) }
@@ -293,10 +300,10 @@ private fun CVScaffold(
                     ),
                     title = {
                         Column {
-                            Text(stringResource(routeTitleRes(route)))
+                            Text(localizedStringResource(routeTitleRes(route)))
                             if (isTopLevel) {
                                 Text(
-                                    text = activeUser?.name ?: stringResource(R.string.nav_no_active_user),
+                                    text = activeUser?.name ?: localizedStringResource(R.string.nav_no_active_user),
                                     style = MaterialTheme.typography.labelSmall,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant
                                 )
@@ -326,7 +333,7 @@ private fun CVScaffold(
                     icon = {
                         Icon(Icons.Default.Article, contentDescription = null)
                     },
-                    text = { Text(stringResource(R.string.fab_view_articles)) }
+                    text = { Text(localizedStringResource(R.string.fab_view_articles)) }
                 )
             } else if (route == Routes.USERS) {
                 FloatingActionButton(onClick = { onNavigate(Routes.USER_FORM) }) {
