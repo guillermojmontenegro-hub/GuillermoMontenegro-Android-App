@@ -11,6 +11,12 @@ La app combina dos objetivos:
 
 - [Tests automáticos](docs/Tests.md)
 
+- ## Video
+
+Demo en funcionamiento de la app:
+
+[Video](https://www.youtube.com/shorts/qCywnFRtl78).
+
 ## Qué quise mostrar con esta app
 
 Quise que el proyecto funcione como una demo técnica relativamente realista. Por eso no dejé la app reducida a pantallas estáticas, sino que sumé navegación, onboarding, carga de contenido, detalle de artículos, ABM de usuarios y persistencia local.
