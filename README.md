@@ -11,7 +11,8 @@ La app combina dos objetivos:
 
 - [Tests automáticos](docs/Tests.md)
 
-- ## Video
+
+## Video
 
 Demo en funcionamiento de la app:
 
