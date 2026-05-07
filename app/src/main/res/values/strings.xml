@@ -4,18 +4,18 @@
     <string name="nav_title_library">Biblioteca</string>
     <string name="nav_title_article">Artículo</string>
     <string name="nav_title_user">Usuario</string>
-    <string name="nav_title_admin">Manage Users</string>
+    <string name="nav_title_admin">Administrar Usuarios</string>
     <string name="nav_title_home">CV Guillermo Montenegro</string>
     <string name="nav_no_active_user">ABM sin usuario activo</string>
     <string name="fab_view_articles">Leer artículos</string>
     <string name="fab_view_articles_content_description">Abrir biblioteca de artículos</string>
-    <string name="nav_open_menu">Abrir menú de navegación</string>
+    <string name="nav_open_menu">Abrir panel de usuario y navegación</string>
     <string name="nav_go_back">Volver</string>
     <string name="drawer_default_avatar">CV</string>
     <string name="drawer_no_active_user">Sin usuario activo</string>
     <string name="drawer_no_active_user_description">Creá un usuario para administrar el ABM</string>
     <string name="drawer_home">Inicio</string>
-    <string name="drawer_users_list">Manage Users</string>
+    <string name="drawer_users_list">Administrar Usuarios</string>
     <string name="drawer_about_app">Acerca de la app</string>
     <string name="drawer_dark_mode">Modo nocturno</string>
     <string name="drawer_light_mode">Modo claro</string>
@@ -43,7 +43,7 @@
     <string name="article_load_error">No se pudo cargar el artículo</string>
 
     <string name="users_admin_title">Administración de usuarios</string>
-    <string name="users_admin_description">El drawer concentra el acceso al ABM. Desde esta vista podés revisar, editar y borrar registros persistidos.</string>
+    <string name="users_admin_description">El acceso al ABM se hace desde el avatar superior derecho. Desde esta vista podés revisar, editar y borrar registros persistidos.</string>
     <string name="users_empty_title">Sin registros</string>
     <string name="users_empty_message">Todavía no hay usuarios cargados.</string>
     <string name="users_create_first">Crear primer usuario</string>
@@ -72,10 +72,10 @@
     <string name="onboarding_back">Atrás</string>
     <string name="onboarding_next">Siguiente</string>
     <string name="onboarding_enter">Entrar</string>
-    <string name="onboarding_step_1_title">Perfil y navegación</string>
+    <string name="onboarding_step_1_title">Compose en la app</string>
     <string name="onboarding_step_1_technology">Jetpack Compose</string>
-    <string name="onboarding_step_1_description">Esta pantalla muestra navegación, layout declarativo y una estética moderna construidos con Jetpack Compose. El drawer y la home sirven para exhibir cómo se arma una UI nativa flexible con Compose.</string>
-    <string name="onboarding_step_1_hint">Abrí el drawer desde el icono superior izquierdo para ver cómo Compose resuelve navegación, jerarquía visual y superficies interactivas.</string>
+    <string name="onboarding_step_1_description">Jetpack Compose se usa como base de toda la interfaz: home, onboarding, drawer, biblioteca, detalle de artículos, formularios y componentes compartidos. La app evita XML y construye cada pantalla con composables reutilizables, estado declarativo y un shell visual consistente.</string>
+    <string name="onboarding_step_1_hint">El avatar superior derecho abre el drawer y resume bien el enfoque de Compose: navegación, estado, jerarquía visual y componentes reutilizables resueltos desde una UI declarativa.</string>
     <string name="onboarding_step_2_title">Leer artículos</string>
     <string name="onboarding_step_2_technology">Retrofit</string>
     <string name="onboarding_step_2_description">La biblioteca técnica está pensada para mostrar consumo de servicios con Retrofit. Aunque hoy el backend está mockeado dentro de la app, el flujo usa cliente HTTP real, repositorio y parseo de datos como si hablara con una API externa.</string>
@@ -84,7 +84,7 @@
     <string name="onboarding_step_3_technology">Room</string>
     <string name="onboarding_step_3_description">El ABM de usuarios existe para mostrar persistencia local con Room. Alta, edición, listado y baja quedan almacenados en base de datos dentro del dispositivo y vuelven a aparecer al reabrir la app.</string>
     <string name="onboarding_step_3_hint">Usá “Alta de usuario”, “Listado de usuarios” y “Editar usuario activo” para recorrer el circuito completo persistido con Room.</string>
-    <string name="onboarding_demo_open_drawer">Abrí el drawer</string>
+    <string name="onboarding_demo_open_drawer">Avatar y drawer</string>
     <string name="onboarding_demo_view_articles">Leer artículos</string>
     <string name="onboarding_demo_user_create">Alta de usuario</string>
     <string name="onboarding_demo_user_list_edit">Listado y edición</string>

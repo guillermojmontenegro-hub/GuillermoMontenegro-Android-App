@@ -34,7 +34,8 @@ Actualmente la app incluye:
 
 - una home con perfil profesional, resumen, skills, experiencia, proyectos, educación, idiomas y contacto
 - onboarding inicial para explicar el recorrido y las tecnologías que se muestran
-- navegación principal con drawer
+- navegación principal con drawer accesible desde el avatar superior derecho
+- animaciones de interacción en el avatar del drawer y en el FAB de artículos para reforzar la transición entre acciones y pantallas
 - botón flotante para abrir la biblioteca técnica
 - listado de artículos con búsqueda y detalle
 - render de Markdown real en el detalle de artículos
@@ -51,10 +52,10 @@ Elegí `Jetpack Compose` porque hoy es la forma más sólida de construir UI mod
 
 - definir toda la interfaz de forma declarativa
 - componer pantallas, componentes reutilizables y estados visuales sin XML
-- montar navegación, drawer, onboarding, FAB animado y formularios
+- montar navegación, drawer desde avatar, onboarding, FAB animado, microinteracciones de click y formularios
 - iterar rápido sobre estética y estructura sin tener que mantener árboles de vistas tradicionales
 
-También me interesaba que la app mostrara cómo Compose escala más allá de una pantalla simple: acá hay navegación, pantallas con scroll, formularios, componentes reutilizables y un shell visual compartido.
+También me interesaba que la app mostrara cómo Compose escala más allá de una pantalla simple: acá hay navegación, pantallas con scroll, formularios, drawer accionado desde un avatar, componentes reutilizables, microanimaciones de interacción y un shell visual compartido.
 
 ### Material 3
 
@@ -62,12 +63,14 @@ Uso `Material 3` como base visual para no inventar un sistema desde cero. Me da:
 
 - componentes consistentes
 - color system y surfaces ordenadas
-- drawer, top bar, chips, cards, diálogos y FABs
+- drawer, top bar, avatar de usuario, chips, cards, diálogos y FABs
 - una base razonable para ajustar identidad visual sin pelearme con detalles básicos de accesibilidad y comportamiento
 
 ### Navigation Compose
 
 Con `Navigation Compose` resolví el flujo entre onboarding, home, artículos, detalle y ABM de usuarios. Me interesa mostrar una navegación simple, explícita y fácil de seguir. No quise esconder lógica de rutas detrás de demasiada abstracción.
+
+Además, acompañé algunas acciones clave con animaciones breves en Compose. El avatar del usuario que abre o cierra el drawer hace una transición de escala y rotación, y el FAB de artículos acentúa el click antes de navegar a la biblioteca. La intención no fue cargar la UI de motion, sino usar animación puntual para reforzar causalidad entre gesto y destino.
 
 ### ViewModel, Coroutines y Flow
 
@@ -234,6 +237,28 @@ Comandos principales:
 ```bash
 ./gradlew testDebugUnitTest
 ./gradlew :app:connectedDebugAndroidTest
+```
+
+### Recorrido automático para video
+
+Además de los tests instrumentados de integración, el proyecto incluye un recorrido automático pensado para capturar un video de la app. Ese flujo:
+
+- completa el onboarding con pausas visibles
+- hace scroll por la home hasta contacto y vuelve
+- abre la biblioteca de artículos
+- entra al detalle de un artículo real
+- vuelve a home
+- abre el drawer desde el avatar superior derecho
+- navega al ABM de usuarios
+- entra al formulario de edición
+
+El test está en `app/src/androidTest/java/com/example/cvguillermomontenegro/AppVideoShowcaseIntegrationTest.kt`.
+
+Para ejecutarlo en un emulador o dispositivo conectado:
+
+```bash
+adb devices
+./gradlew :app:connectedDebugAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=com.example.cvguillermomontenegro.AppVideoShowcaseIntegrationTest
 ```
 
 Para publicar la app, la idea es apoyarme en un flujo de CI/CD que mantenga el proceso más consistente y automatizable.

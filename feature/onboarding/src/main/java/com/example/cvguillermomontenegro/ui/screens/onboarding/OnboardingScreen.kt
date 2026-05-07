@@ -9,12 +9,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Article
 import androidx.compose.material.icons.automirrored.filled.MenuBook
 import androidx.compose.material.icons.filled.Group
-import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.PersonAdd
 import androidx.compose.material.icons.filled.SettingsSuggest
 import androidx.compose.material3.Button
@@ -38,6 +39,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.annotation.StringRes
 import com.example.cvguillermomontenegro.feature.onboarding.R
+import com.example.cvguillermomontenegro.ui.components.UserAvatar
 import com.example.cvguillermomontenegro.ui.i18n.localizedStringResource
 
 private data class OnboardingStep(
@@ -75,6 +77,12 @@ fun OnboardingScreen(
             technology = R.string.onboarding_step_4_technology,
             description = R.string.onboarding_step_4_description,
             hint = R.string.onboarding_step_4_hint
+        ),
+        OnboardingStep(
+            title = R.string.onboarding_step_5_title,
+            technology = R.string.onboarding_step_5_technology,
+            description = R.string.onboarding_step_5_description,
+            hint = R.string.onboarding_step_5_hint
         )
     )
     var currentStep by remember { mutableIntStateOf(0) }
@@ -191,7 +199,11 @@ fun OnboardingScreen(
 
 @Composable
 private fun DemoPanel(index: Int) {
-    val panelHeight = if (index == 3) 210.dp else 170.dp
+    val panelHeight = when (index) {
+        3 -> 210.dp
+        4 -> 230.dp
+        else -> 170.dp
+    }
 
     Card(
         shape = RoundedCornerShape(16.dp),
@@ -209,11 +221,12 @@ private fun DemoPanel(index: Int) {
                 0 -> {
                     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
                         Row(
-                            horizontalArrangement = Arrangement.spacedBy(10.dp),
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-                            Icon(Icons.Default.Menu, contentDescription = null)
                             Text(localizedStringResource(R.string.onboarding_demo_open_drawer), fontWeight = FontWeight.SemiBold)
+                            UserAvatar(label = localizedStringResource(R.string.onboarding_demo_avatar_label))
                         }
                         repeat(3) {
                             Box(
@@ -260,7 +273,7 @@ private fun DemoPanel(index: Int) {
                         }
                     }
                 }
-                else -> {
+                3 -> {
                     Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                         Row(
                             horizontalArrangement = Arrangement.spacedBy(10.dp),
@@ -283,6 +296,36 @@ private fun DemoPanel(index: Int) {
                         )
                         Text(
                             localizedStringResource(R.string.onboarding_demo_stack_line_4),
+                            style = MaterialTheme.typography.bodyMedium
+                        )
+                    }
+                }
+                else -> {
+                    Column(
+                        verticalArrangement = Arrangement.spacedBy(10.dp),
+                        modifier = Modifier.verticalScroll(rememberScrollState())
+                    ) {
+                        Row(
+                            horizontalArrangement = Arrangement.spacedBy(10.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Icon(Icons.Default.SettingsSuggest, contentDescription = null)
+                            Text(localizedStringResource(R.string.onboarding_demo_architecture_title), fontWeight = FontWeight.SemiBold)
+                        }
+                        Text(
+                            localizedStringResource(R.string.onboarding_demo_architecture_line_1),
+                            style = MaterialTheme.typography.bodyMedium
+                        )
+                        Text(
+                            localizedStringResource(R.string.onboarding_demo_architecture_line_2),
+                            style = MaterialTheme.typography.bodyMedium
+                        )
+                        Text(
+                            localizedStringResource(R.string.onboarding_demo_architecture_line_3),
+                            style = MaterialTheme.typography.bodyMedium
+                        )
+                        Text(
+                            localizedStringResource(R.string.onboarding_demo_architecture_line_4),
                             style = MaterialTheme.typography.bodyMedium
                         )
                     }

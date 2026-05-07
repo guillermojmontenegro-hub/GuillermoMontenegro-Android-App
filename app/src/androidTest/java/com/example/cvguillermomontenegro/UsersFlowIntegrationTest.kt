@@ -20,7 +20,6 @@ class UsersFlowIntegrationTest {
         clearAppState(appContext)
 
         val device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
-        val openMenuDescriptions = localizedStringCandidates(appContext, R.string.nav_open_menu)
         val drawerUsersLabels = localizedStringCandidates(appContext, R.string.drawer_users_list)
         val usersTitles = localizedStringCandidates(appContext, UsersR.string.users_admin_title)
         val editDescriptions = localizedStringCandidates(appContext, UsersR.string.users_edit_content_description)
@@ -29,9 +28,7 @@ class UsersFlowIntegrationTest {
         ActivityScenario.launch(MainActivity::class.java).use {
             completeOnboarding(device, appContext)
             assertTrue(waitForHomeReady(device, appContext) != null)
-
-            assertTrue(device.waitForAnyDescription(openMenuDescriptions, 8_000) != null)
-            device.waitForAnyDescription(openMenuDescriptions, 8_000)?.click()
+            openDrawerFromAvatar(device, appContext)
 
             assertTrue(device.waitForAnyText(drawerUsersLabels, 8_000) != null)
             device.waitForAnyText(drawerUsersLabels, 8_000)?.click()

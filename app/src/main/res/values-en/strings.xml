@@ -9,7 +9,7 @@
     <string name="nav_no_active_user">User CRUD without active user</string>
     <string name="fab_view_articles">Read articles</string>
     <string name="fab_view_articles_content_description">Open article library</string>
-    <string name="nav_open_menu">Open navigation menu</string>
+    <string name="nav_open_menu">Open user and navigation panel</string>
     <string name="nav_go_back">Go back</string>
     <string name="drawer_default_avatar">CV</string>
     <string name="drawer_no_active_user">No active user</string>
@@ -43,7 +43,7 @@
     <string name="article_load_error">The article could not be loaded</string>
 
     <string name="users_admin_title">User administration</string>
-    <string name="users_admin_description">The drawer centralizes access to the CRUD. From this view you can review, edit, and delete persisted records.</string>
+    <string name="users_admin_description">CRUD access starts from the top-right avatar. From this view you can review, edit, and delete persisted records.</string>
     <string name="users_empty_title">No records</string>
     <string name="users_empty_message">No users have been added yet.</string>
     <string name="users_create_first">Create first user</string>
@@ -72,10 +72,10 @@
     <string name="onboarding_back">Back</string>
     <string name="onboarding_next">Next</string>
     <string name="onboarding_enter">Enter</string>
-    <string name="onboarding_step_1_title">Profile and navigation</string>
+    <string name="onboarding_step_1_title">Compose across the app</string>
     <string name="onboarding_step_1_technology">Jetpack Compose</string>
-    <string name="onboarding_step_1_description">This screen shows navigation, declarative layout, and a modern look built with Jetpack Compose. The drawer and home screen demonstrate how to build a flexible native UI with Compose.</string>
-    <string name="onboarding_step_1_hint">Open the drawer from the top-left icon to see how Compose handles navigation, visual hierarchy, and interactive surfaces.</string>
+    <string name="onboarding_step_1_description">Jetpack Compose is the foundation of the entire interface: home, onboarding, drawer, library, article detail, forms, and shared components. The app avoids XML and builds each screen with reusable composables, declarative state, and a consistent visual shell.</string>
+    <string name="onboarding_step_1_hint">The top-right avatar opens the drawer and reflects the Compose approach well: navigation, state, visual hierarchy, and reusable components handled from a declarative UI.</string>
     <string name="onboarding_step_2_title">Read articles</string>
     <string name="onboarding_step_2_technology">Retrofit</string>
     <string name="onboarding_step_2_description">The technical library is designed to show service consumption with Retrofit. Although the backend is currently mocked inside the app, the flow uses a real HTTP client, repository, and data parsing as if it talked to an external API.</string>
@@ -84,7 +84,7 @@
     <string name="onboarding_step_3_technology">Room</string>
     <string name="onboarding_step_3_description">The user CRUD exists to show local persistence with Room. Create, edit, list, and delete operations are stored in the device database and reappear when reopening the app.</string>
     <string name="onboarding_step_3_hint">Use “Create user”, “User list”, and “Edit active user” to go through the full Room-persisted flow.</string>
-    <string name="onboarding_demo_open_drawer">Open drawer</string>
+    <string name="onboarding_demo_open_drawer">Avatar and drawer</string>
     <string name="onboarding_demo_view_articles">Read articles</string>
     <string name="onboarding_demo_user_create">Create user</string>
     <string name="onboarding_demo_user_list_edit">List and edit</string>

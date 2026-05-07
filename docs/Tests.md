@@ -126,7 +126,7 @@ Qué valida:
 
 - limpia preferencias y base local
 - recorre onboarding completo
-- abre el drawer
+- abre el drawer desde el avatar superior derecho
 - navega a la pantalla de usuarios
 - entra al formulario de edición de usuario
 
