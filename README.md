@@ -14,9 +14,9 @@ La app combina dos objetivos:
 
 ## Video
 
-Demo en funcionamiento de la app:
+[![Video de la app en funcionamiento](https://img.youtube.com/vi/qCywnFRtl78/0.jpg)](https://www.youtube.com/shorts/qCywnFRtl78)
 
-[Video](https://www.youtube.com/shorts/qCywnFRtl78).
+
 
 ## Qué quise mostrar con esta app
 
