@@ -27,6 +27,19 @@ internal fun localizedStringCandidates(
     .distinct()
 
 internal fun completeOnboarding(device: UiDevice, context: Context) {
+    completeOnboardingSlowly(
+        device = device,
+        context = context,
+        pauseMs = 0L
+    )
+}
+
+internal fun completeOnboardingSlowly(
+    device: UiDevice,
+    context: Context,
+    pauseMs: Long = 1_500L,
+    timeoutMs: Long = 8_000L
+) {
     val nextLabels = localizedStringCandidates(
         context = context,
         id = com.example.cvguillermomontenegro.feature.onboarding.R.string.onboarding_next
@@ -36,17 +49,39 @@ internal fun completeOnboarding(device: UiDevice, context: Context) {
         id = com.example.cvguillermomontenegro.feature.onboarding.R.string.onboarding_enter
     )
 
-    repeat(2) {
-        requireNotNull(device.waitForAnyText(nextLabels, 8_000)).click()
+    while (true) {
+        device.waitForIdle()
+        device.waitForAnyText(enterLabels, 600)?.let {
+            pauseForVideo(pauseMs)
+            it.click()
+            InstrumentationRegistry.getInstrumentation().waitForIdleSync()
+            return
+        }
+        val nextButton = requireNotNull(device.waitForAnyText(nextLabels, timeoutMs))
+        pauseForVideo(pauseMs)
+        nextButton.click()
+        InstrumentationRegistry.getInstrumentation().waitForIdleSync()
     }
-    requireNotNull(device.waitForAnyText(enterLabels, 8_000)).click()
-    InstrumentationRegistry.getInstrumentation().waitForIdleSync()
 }
 
 internal fun waitForHomeReady(device: UiDevice, context: Context): UiObject2? {
     val homeSignals = localizedStringCandidates(context, com.example.cvguillermomontenegro.R.string.nav_title_home) +
         localizedStringCandidates(context, com.example.cvguillermomontenegro.R.string.fab_view_articles)
     return device.waitForAnyText(homeSignals.distinct(), 15_000)
+}
+
+internal fun openDrawerFromAvatar(
+    device: UiDevice,
+    context: Context,
+    timeoutMs: Long = 8_000L
+) {
+    val openMenuDescriptions = localizedStringCandidates(
+        context,
+        com.example.cvguillermomontenegro.R.string.nav_open_menu
+    )
+    val drawerButton = requireNotNull(device.waitForAnyDescription(openMenuDescriptions, timeoutMs))
+    drawerButton.click()
+    InstrumentationRegistry.getInstrumentation().waitForIdleSync()
 }
 
 internal fun UiDevice.waitForAnyText(
@@ -71,6 +106,53 @@ internal fun UiDevice.scrollToAnyText(
     return null
 }
 
+internal fun UiDevice.slowSwipeUp(
+    times: Int = 1,
+    pauseMs: Long = 1_200L
+) {
+    repeat(times) {
+        swipeVertically(startRatio = 0.82f, endRatio = 0.22f)
+        pauseForVideo(pauseMs)
+    }
+}
+
+internal fun UiDevice.slowSwipeDown(
+    times: Int = 1,
+    pauseMs: Long = 1_200L
+) {
+    repeat(times) {
+        swipeVertically(startRatio = 0.32f, endRatio = 0.82f)
+        pauseForVideo(pauseMs)
+    }
+}
+
+internal fun pauseForVideo(durationMs: Long) {
+    InstrumentationRegistry.getInstrumentation().waitForIdleSync()
+    Thread.sleep(durationMs)
+}
+
+internal fun UiDevice.waitForObjectsByClass(
+    className: String,
+    minimumCount: Int,
+    timeoutMs: Long
+): List<UiObject2> {
+    val deadline = System.currentTimeMillis() + timeoutMs
+    while (System.currentTimeMillis() < deadline) {
+        val matches = findObjects(By.clazz(className))
+        if (matches.size >= minimumCount) return matches
+        waitForIdle()
+    }
+    return findObjects(By.clazz(className))
+}
+
+internal fun UiDevice.tapRelative(
+    widthRatio: Float,
+    heightRatio: Float
+) {
+    click((displayWidth * widthRatio).toInt(), (displayHeight * heightRatio).toInt())
+    waitForIdle()
+}
+
 private fun UiDevice.waitForAny(
     timeoutMs: Long,
     finder: UiDevice.(String) -> UiObject2?
@@ -88,9 +170,16 @@ private fun UiDevice.waitForAny(
 }
 
 private fun UiDevice.swipeUp() {
+    swipeVertically(startRatio = 0.8f, endRatio = 0.25f)
+}
+
+private fun UiDevice.swipeVertically(
+    startRatio: Float,
+    endRatio: Float
+) {
     val x = displayWidth / 2
-    val startY = (displayHeight * 0.8).toInt()
-    val endY = (displayHeight * 0.25).toInt()
+    val startY = (displayHeight * startRatio).toInt()
+    val endY = (displayHeight * endRatio).toInt()
     swipe(x, startY, x, endY, 28)
     waitForIdle()
 }

@@ -12,12 +12,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.cvguillermomontenegro.R
 import com.example.cvguillermomontenegro.domain.model.User
-import com.example.cvguillermomontenegro.ui.components.UserAvatar
 import com.example.cvguillermomontenegro.ui.screens.articles.ArticleDetailScreen
 import com.example.cvguillermomontenegro.ui.screens.articles.ArticlesScreen
 import com.example.cvguillermomontenegro.ui.screens.home.HomeScreen
@@ -42,11 +39,20 @@ fun AppNavHost(
     val shouldShowOnboarding = remember { !prefs.getBoolean("onboarding_seen", false) }
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
+    val drawerEnabledRoutes = remember { setOf(Routes.ONBOARDING, Routes.HOME, Routes.ARTICLES) }
 
     CVScaffold(
         navController = navController,
         activeUser = activeUser,
-        onOpenDrawer = { scope.launch { drawerState.open() } },
+        onOpenDrawer = {
+            scope.launch {
+                if (drawerState.isClosed) {
+                    drawerState.open()
+                } else {
+                    drawerState.close()
+                }
+            }
+        },
         onNavigate = { route ->
             scope.launch { drawerState.close() }
             navController.navigate(route)
@@ -54,7 +60,7 @@ fun AppNavHost(
     ) { innerModifier, currentRoute ->
         ModalNavigationDrawer(
             drawerState = drawerState,
-            gesturesEnabled = currentRoute in setOf(Routes.HOME, Routes.USERS),
+            gesturesEnabled = currentRoute in drawerEnabledRoutes || currentRoute.startsWith("articleDetail/"),
             drawerContent = {
                 AppDrawerContent(
                     activeUser = activeUser,

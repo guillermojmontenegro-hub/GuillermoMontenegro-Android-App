@@ -5,10 +5,10 @@
     <string name="onboarding_back">Atrás</string>
     <string name="onboarding_next">Siguiente</string>
     <string name="onboarding_enter">Entrar</string>
-    <string name="onboarding_step_1_title">Perfil y navegación</string>
+    <string name="onboarding_step_1_title">Compose en la app</string>
     <string name="onboarding_step_1_technology">Jetpack Compose</string>
-    <string name="onboarding_step_1_description">Esta pantalla muestra navegación, layout declarativo y una estética moderna construidos con Jetpack Compose. El drawer y la home sirven para exhibir cómo se arma una UI nativa flexible con Compose.</string>
-    <string name="onboarding_step_1_hint">Abrí el drawer desde el icono superior izquierdo para ver cómo Compose resuelve navegación, jerarquía visual y superficies interactivas.</string>
+    <string name="onboarding_step_1_description">Jetpack Compose se usa como base de toda la interfaz: home, onboarding, drawer, biblioteca, detalle de artículos, formularios y componentes compartidos. La app evita XML y construye cada pantalla con composables reutilizables, estado declarativo y un shell visual consistente.</string>
+    <string name="onboarding_step_1_hint">El avatar superior derecho abre el drawer y resume bien el enfoque de Compose: navegación, estado, jerarquía visual y componentes reutilizables resueltos desde una UI declarativa.</string>
     <string name="onboarding_step_2_title">Leer artículos</string>
     <string name="onboarding_step_2_technology">Retrofit</string>
     <string name="onboarding_step_2_description">La biblioteca técnica está pensada para mostrar consumo de servicios con Retrofit. Aunque hoy el backend está mockeado dentro de la app, el flujo usa cliente HTTP real, repositorio y parseo de datos como si hablara con una API externa.</string>
@@ -21,7 +21,12 @@
     <string name="onboarding_step_4_technology">Stack Android moderno</string>
     <string name="onboarding_step_4_description">La app integra Jetpack Compose, Material 3, Navigation Compose, ViewModel, Coroutines, Flow, Hilt, Retrofit, OkHttp, Moshi, Room, Coil, Timber, Kotlinx Serialization, Compose Richtext y LeakCanary, además de tests automáticos con JUnit, kotlinx-coroutines-test, ActivityScenario, UiAutomator, Espresso y Compose UI Test.</string>
     <string name="onboarding_step_4_hint">Este paso resume el stack completo que sostiene UI, navegación, datos locales, red mockeada, DI, observabilidad, diagnóstico de memoria y validación automática.</string>
-    <string name="onboarding_demo_open_drawer">Abrí el drawer</string>
+    <string name="onboarding_step_5_title">Arquitectura de la app</string>
+    <string name="onboarding_step_5_technology">MVVM y módulos</string>
+    <string name="onboarding_step_5_description">La app está organizada con una arquitectura MVVM y una separación por módulos. La UI en Compose observa estado expuesto por ViewModel, los casos de uso encapsulan operaciones concretas y los repositorios conectan la lógica con Room, assets y la capa remota mockeada.</string>
+    <string name="onboarding_step_5_hint">La decisión principal fue evitar sobreingeniería: cada feature queda aislada, `core` concentra lo compartido y la estructura permite crecer reglas de negocio sin mezclar navegación, UI y acceso a datos.</string>
+    <string name="onboarding_demo_open_drawer">Avatar y drawer</string>
+    <string name="onboarding_demo_avatar_label">GM</string>
     <string name="onboarding_demo_view_articles">Leer artículos</string>
     <string name="onboarding_demo_user_create">Alta de usuario</string>
     <string name="onboarding_demo_user_list_edit">Listado y edición</string>
@@ -30,4 +35,9 @@
     <string name="onboarding_demo_stack_line_2">Datos: Room, Retrofit, OkHttp y Moshi</string>
     <string name="onboarding_demo_stack_line_3">Soporte: Hilt, Flow, Coil, Timber, Serialization y LeakCanary</string>
     <string name="onboarding_demo_stack_line_4">Tests: JUnit, coroutines-test, ActivityScenario, UiAutomator, Espresso y Compose UI Test</string>
+    <string name="onboarding_demo_architecture_title">Cómo está organizada</string>
+    <string name="onboarding_demo_architecture_line_1">MVVM: Compose renderiza estado y ViewModel concentra la lógica de pantalla.</string>
+    <string name="onboarding_demo_architecture_line_2">Módulos: `app` compone, `feature` implementa flujos y `core` comparte modelos, datos y UI.</string>
+    <string name="onboarding_demo_architecture_line_3">Casos de uso: dejan explícita cada operación y desacoplan la UI de los repositorios.</string>
+    <string name="onboarding_demo_architecture_line_4">Decisión: escalar con límites claros sin volver la app ceremonial.</string>
 </resources>
